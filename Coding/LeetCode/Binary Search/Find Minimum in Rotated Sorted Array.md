@@ -1,18 +1,19 @@
 ---
-title: "[LeetCode] <Problem Title>"
+title: "[LeetCode] 153. Find Minimum in Rotated Sorted Array"
 tags:
   - leetcode
-difficulty: <Easy | Medium | Hard>
-status: <To Do | In Progress | Solved>
-date: YYYY-MM-DD
-link: https://leetcode.com/problems/<slug>/
+  - Binary_Search
+difficulty: Medium
+status: Solved
+date: 2025-06-11
+link: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
 time_taken: <e.g., 30min>
 language: <e.g., Python3>
 ---
 
 ## 🧠 Problem Summary
 
-> Briefly summarize what the problem is asking.
+> In an array of length N, sorted in ascending order rotated from 1 to N times. Find the Min Value
 
 ## 🔍 Constraints & Edge Cases
 
@@ -40,4 +41,15 @@ Describe improvements, trade-offs, or alternate approaches.
 ### ✅ Final Solution (Python)
 
 ```python
-# Replace with your final working solution
+
+def findMin(self, nums: List[int]) -> int:
+	l, r = 0, len(nums) - 1
+	while l < r:
+		m = (l + r) // 2
+		if nums[m] > nums[r]:
+			l = m + 1
+		else:
+			r = m
+	return nums[l]
+```
+

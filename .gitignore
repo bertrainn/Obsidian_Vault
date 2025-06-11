@@ -1,0 +1,43 @@
+# Obsidian configuration and cache files
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/hotkeys.json
+.obsidian/appearance.json
+.obsidian/core-plugins.json
+.obsidian/core-plugins-migration.json
+.obsidian/community-plugins.json
+.obsidian/plugins/
+.obsidian/snippets/
+.obsidian/themes/
+.obsidian/graph.json
+.obsidian/canvas.json
+
+# Obsidian cache
+.obsidian/cache
+
+# Trash folder
+.trash/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Logs
+*.log
+
+# Personal workspace settings (optional - remove if you want to sync these)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Plugin data that shouldn't be synced
+.obsidian/plugins/*/data.json
