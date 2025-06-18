@@ -25,6 +25,12 @@
 | 102  | [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)                           | Medium     | Tree (Binary)<br>BFS               | - Conduct a BFS on the tree. -> use a Queue<br>- Using a for loop as you add to the list                                                                                                                                                                                                        |
 | 203  | [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)                                   | Medium     | Tree (BST)<br>In Order Transversal | - In order (LNR) transversal of a BST = Numerical order <br>- keep track of a global count and answer var<br>- Do inorder on the BST<br>- Decrementing the count, when the count hits 1 -> number has been found <br>- Update the values<br>                                                    |
 | 503  | [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/)                         | Easy       | Tree (BST)<br>In Order             | - Basically, Inorder goes through the list numerically, so just keep track of the previous element and update the global values accordingly                                                                                                                                                     |
+| 98   | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)                                       | Medium     | Tree (BST)<br>DFS                  | - Each node in a BST must be somewhere inbetween a max and min value                                                                                                                                                                                                                            |
+| 235  | [Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) | Medium     | Tree(BST)<br>                      | - Similar idea to before. <br>- Keep a running track of the LCA <br>- if current node is q or p -> return we good<br>- if node val < q and p -> node is too small -> go right<br>- if node val > q and p -> node is too big -> go left<br>- else we at the optimal spot alr<br>                 |
+| 1046 | [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)                                                           | Easy       | Heap                               | - Convert all elements to negative<br>- Call heapify -> make it into a max heap<br>- pop the top 2 elements<br>- find the diff<br>- add the diff back to the heap if > 0<br>- continue until list only has 1 element                                                                            |
+| 215  | [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)                               | Medium     | Heap                               | - Min heap -> keep adding elements to the min heap, if the len is more than K, push the element than pop. (heappushpop())<br>- Max heap -> pop the heap K - 1 times, and return the element (longer time complexity due to setting up the max heap)                                             |
+| 347  | [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)                                               | Medium     | Heap                               | - Min Heap and Counter (dictionary)<br>- bruh it's the same as the previous lmao <br>- It works cause python will do a comparison based on the first element in the tuple (value, key)                                                                                                          |
+| 973  | [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)                                         | Medium     | Heap                               | - Max heap<br>- It do be the same<br>- Just rmb to negate the euclidian distance to maintain the max_heap                                                                                                                                                                                       |
 |      |                                                                                                                                 |            |                                    |                                                                                                                                                                                                                                                                                                 |
 
 
@@ -47,3 +53,82 @@ l < r:
 	- Finding insertion positions 
 	- Problems where answers always exists 
 
+
+## Heaps
+* Heap Properties: In a min-heap, the value of each node is less than or equal to the value of its children. The smallest element is always at the root (index 0)
+* Complete BT: Heaps are typically implemented using arrays, representing a complete Binary Tree. 
+	* Complete BT is one where all levels are filled except possibly the last level, which is filled from left to right
+* Array Representation
+	* Root: index 0
+	* For a node at index i: 
+		* Left child: 2 * i + 1
+		* Right child: 2 * i + 2
+		* Parent: (i - 1) // 2
+
+### Important Code
+#### Heapify
+```python 
+"""
+Converts a list into a heap in-place (bottom-up approach)
+"""
+heap = []
+
+def heapify(heap):
+	n = len(heap)
+	for i in range(n // 2 - 1, -1, -1):
+		heapify_down(i)
+
+"""
+Move a node down the tree until the heap property is restored
+"""
+def heapify_down(heap, index):
+	n = len(heap)
+	while True: 
+		left_child_index = 2 * index + 1
+		right_child_index = 2 * index + 2
+		smallest = index #assume current node is the smallest
+	
+	if left_child_index < n and heap[left_child_index] < heap[smallest]:
+		smallest = left_child_index
+
+	if right_child_index < n and heap[right_child_index] < heap[smallest]:
+		smallest = right_child_index
+
+	if smallest != index: 
+		# Swap the current node with the smallest child
+		heap[index], heap[smallest] = heap[smallest], heap[index]
+		index = smallest
+	else: 
+		break # Heap Property is statisfied
+		
+"""
+Move a node up the tree until the heap property is restored
+"""
+def heapify_up(heap, index): 
+	while index > 0: 
+		parent_index = (index - 1) // 2
+		if heap[index] < heap[parent_index]: 
+			heap[index], heap[parent_index] = heap[parent_index], heap[index]
+			index = parent_index
+		else:
+			break
+	
+```
+
+## Backtracking
+
+``` python
+
+def backtracking(): 
+	if (some base case):
+		some random modification
+		return
+
+	backtracking(a) -> take option A
+
+	some modification -> take option B 
+	backtracking(b) -> continue with option B
+	undo option B
+
+
+```
