@@ -38,19 +38,21 @@ Understand React core concepts and set up development environment
 ### React Fundamentals
 1. **Explain in your own words: What is React?**
    
-   *Your answer:*
+   *Your answer:* some ass framework that i need to learn to be employed
 
 2. **What problem does the Virtual DOM solve?**
    
-   *Your answer:*
+   *Your answer:* Virtual DOM (Document Object Model) -> in memory representation of a DOM. DOM = tree like structure that represents the structure of HTML. 
+   
+   Virtual DOM -> more efficient way of interacting with the DOM, each modification of the DOM triggers an update -> resulting in a bottle neck
 
 3. **What are the main rules of JSX? List at least 3.**
    
-   *Your answer:*
+   *Your answer:* 
 
 4. **What's the difference between functional and class components? Why should you focus on functional components?**
    
-   *Your answer:*
+   *Your answer:* 
 
 ### Props and Components
 5. **What are props and how do they work?**
