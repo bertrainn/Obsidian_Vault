@@ -8,6 +8,7 @@ https://dev.to/zeromeroz/setting-up-zsh-and-oh-my-zhs-with-autocomplete-plugins-
 Homebrew: https://brew.sh/
 NVM: https://github.com/nvm-sh/nvm
 pythonenv: https://github.com/pyenv/pyenv
+Postman: https://www.postman.com/
 
 ## Look and Feel
 Remove Dock animation: defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.dock autohide-time-modifier -int 0;killall Dock
