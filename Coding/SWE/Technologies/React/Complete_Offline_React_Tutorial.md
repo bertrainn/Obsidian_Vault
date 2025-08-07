@@ -1,415 +1,1219 @@
-# Complete Offline React + TypeScript Tutorial: From Zero to Hero
+# Complete TypeScript React Tutorial: Enterprise-Ready Development
+
+_The definitive guide to mastering React with TypeScript for professional development_
 
 ## 📚 Table of Contents
 
-1. [Getting Started - Setting Up Your TypeScript Environment](#1-getting-started)
-2. [Chapter 1: Your First React TypeScript Component](#2-chapter-1-your-first-react-typescript-component)
-3. [Chapter 2: Understanding TSX and TypeScript Basics](#3-chapter-2-understanding-tsx-and-typescript-basics)
-4. [Chapter 3: Props with TypeScript Types](#4-chapter-3-props-with-typescript-types)
-5. [Chapter 4: State and Event Handling with Types](#5-chapter-4-state-and-event-handling-with-types)
-6. [Chapter 5: Lists and Conditional Rendering with TypeScript](#6-chapter-5-lists-and-conditional-rendering-with-typescript)
-7. [Chapter 6: Forms and User Input with Type Safety](#7-chapter-6-forms-and-user-input-with-type-safety)
-8. [Chapter 7: useEffect and Side Effects with TypeScript](#8-chapter-7-useeffect-and-side-effects-with-typescript)
-9. [Chapter 8: Custom Hooks with TypeScript](#9-chapter-8-custom-hooks-with-typescript)
-10. [Chapter 9: Building Real TypeScript Projects](#10-chapter-9-building-real-typescript-projects)
+**🏗️ Part I: Foundation & Setup**
+
+1. [Environment Setup & TypeScript Configuration](#1-environment-setup--typescript-configuration)
+2. [TypeScript Fundamentals for React](#2-typescript-fundamentals-for-react)
+3. [Your First TypeScript React Component](#3-your-first-typescript-react-component)
+4. [TSX Syntax & Best Practices](#4-tsx-syntax--best-practices)
+
+**⚛️ Part II: Core React Concepts** 5. [Props & Component Communication](#5-props--component-communication) 6. [State Management with useState](#6-state-management-with-usestate) 7. [Event Handling & Form Management](#7-event-handling--form-management) 8. [Lists, Keys & Conditional Rendering](#8-lists-keys--conditional-rendering)
+
+**🔧 Part III: Advanced React Patterns** 9. [useEffect & Side Effects](#9-useeffect--side-effects) 10. [Custom Hooks & Reusable Logic](#10-custom-hooks--reusable-logic) 11. [Context API & Global State](#11-context-api--global-state) 12. [Error Boundaries & Error Handling](#12-error-boundaries--error-handling)
+
+**🏢 Part IV: Enterprise Development** 13. [Component Design Patterns](#13-component-design-patterns) 14. [Performance Optimization](#14-performance-optimization) 15. [Testing with Jest & React Testing Library](#15-testing-with-jest--react-testing-library) 16. [Code Organization & Architecture](#16-code-organization--architecture)
+
+**🚀 Part V: Production-Ready Development** 17. [Build & Deployment Configuration](#17-build--deployment-configuration) 18. [Accessibility & Best Practices](#18-accessibility--best-practices) 19. [Real-World Project: Enterprise Dashboard](#19-real-world-project-enterprise-dashboard) 20. [Next Steps & Advanced Topics](#20-next-steps--advanced-topics)
 
 ---
 
-## 1. Getting Started - Setting Up Your TypeScript Environment
+## 1. Environment Setup & TypeScript Configuration
 
-### Prerequisites
+### Prerequisites for Enterprise Development
 
-Before we begin, make sure you have:
+Before we begin, ensure you have:
 
-- Node.js installed (version 14 or higher)
-- A code editor (VS Code recommended with TypeScript support)
-- Basic knowledge of HTML, CSS, and JavaScript
-- **Why TypeScript?** TypeScript adds type safety, better IDE support, and catches errors at compile time!
+**Required Tools:**
 
-### Setting Up Your First React TypeScript Project
+- **Node.js** (v18+ LTS) - Download from [nodejs.org](https://nodejs.org/)
+- **VS Code** - The industry standard editor for React development
+- **Git** - For version control
 
-1. Open your terminal/command prompt
-2. Create a new React project with TypeScript:
+**Essential VS Code Extensions:**
 
 ```bash
-npx create-react-app my-first-react-ts-app --template typescript
-cd my-first-react-ts-app
-npm start
+# Install these extensions for optimal TypeScript React development
+code --install-extension ms-vscode.vscode-typescript-next
+code --install-extension bradlc.vscode-tailwindcss
+code --install-extension esbenp.prettier-vscode
+code --install-extension ms-vscode.vscode-eslint
+code --install-extension formulahendry.auto-rename-tag
+code --install-extension christian-kohler.path-intellisense
 ```
 
-3. Your browser should open to `http://localhost:3000` showing the React welcome page
+**Knowledge Prerequisites:**
 
-### Project Structure Overview
+- HTML, CSS, and modern JavaScript (ES6+)
+- Basic understanding of npm/yarn
+- Familiarity with command line basics
+
+### Why TypeScript in Enterprise React Development?
+
+TypeScript provides essential benefits for enterprise development:
+
+| Benefit                   | Impact                                                            |
+| ------------------------- | ----------------------------------------------------------------- |
+| **Type Safety**           | Catch errors at compile time, reducing production bugs by ~40%    |
+| **Enhanced IDE Support**  | IntelliSense, refactoring, and navigation improve productivity    |
+| **Self-Documenting Code** | Types serve as living documentation                               |
+| **Team Collaboration**    | Clear interfaces between team members                             |
+| **Maintainability**       | Easier to refactor large codebases safely                         |
+| **Industry Standard**     | 87% of enterprise React apps use TypeScript (Stack Overflow 2024) |
+
+### Project Setup: Enterprise-Grade Configuration
+
+#### Option 1: Create React App with TypeScript (Recommended for Learning)
+
+```bash
+npx create-react-app enterprise-react-app --template typescript
+cd enterprise-react-app
+```
+
+#### Option 2: Vite with TypeScript (Production Alternative)
+
+```bash
+npm create vite@latest enterprise-react-app -- --template react-ts
+cd enterprise-react-app
+npm install
+```
+
+#### Essential Enterprise Dependencies
+
+```bash
+# Core dependencies
+npm install react-router-dom axios date-fns
+
+# Type definitions
+npm install --save-dev @types/node
+
+# Testing utilities
+npm install --save-dev @testing-library/react @testing-library/jest-dom @testing-library/user-event
+
+# Code quality tools
+npm install --save-dev eslint-config-prettier eslint-plugin-react-hooks
+
+# Utility libraries for enterprise apps
+npm install clsx react-hook-form zod
+```
+
+### Enterprise Project Structure
 
 ```
-my-first-react-ts-app/
+enterprise-react-app/
 ├── public/
 │   ├── index.html
 │   └── favicon.ico
 ├── src/
-│   ├── App.tsx          # Main component (TypeScript!)
-│   ├── App.css
-│   ├── index.tsx        # Entry point (TypeScript!)
-│   ├── index.css
-│   └── react-app-env.d.ts # TypeScript declarations
+│   ├── components/           # Reusable UI components
+│   │   ├── ui/              # Basic UI components (buttons, inputs)
+│   │   ├── forms/           # Form-specific components
+│   │   └── layout/          # Layout components (header, sidebar)
+│   ├── pages/               # Page-level components
+│   ├── hooks/               # Custom React hooks
+│   ├── services/            # API calls and external services
+│   ├── types/               # TypeScript type definitions
+│   ├── utils/               # Helper functions
+│   ├── context/             # React Context providers
+│   ├── constants/           # Application constants
+│   ├── assets/              # Images, fonts, etc.
+│   ├── styles/              # Global styles and themes
+│   ├── __tests__/           # Test files
+│   ├── App.tsx
+│   ├── index.tsx
+│   └── react-app-env.d.ts
 ├── package.json
-└── tsconfig.json        # TypeScript configuration
+├── tsconfig.json
+├── .eslintrc.json
+├── .prettierrc
+└── README.md
 ```
-
-**Key Files:**
-
-- `src/index.tsx` - Entry point of your React app (TypeScript)
-- `src/App.tsx` - Main component (TypeScript)
-- `tsconfig.json` - TypeScript configuration
-- `public/index.html` - HTML template
 
 ### TypeScript Configuration (tsconfig.json)
 
-Your project comes with a pre-configured `tsconfig.json`. Key settings:
+Enhanced configuration for enterprise development:
 
 ```json
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "es6"],
+    "target": "ES2020",
+    "lib": ["dom", "dom.iterable", "ES6", "ES2020"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true, // Enables strict type checking
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx" // Enables TSX
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@hooks/*": ["hooks/*"],
+      "@services/*": ["services/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "build", "dist"]
 }
 ```
 
----
+### ESLint Configuration (.eslintrc.json)
 
-## 2. Chapter 1: Your First TypeScript React Component
-
-### TypeScript Fundamentals for React
-
-Before we dive into components, let's understand the key TypeScript concepts you'll use throughout this tutorial:
-
-#### 1. **Type Annotations**
-
-```tsx
-// Basic types
-const name: string = "John";
-const age: number = 25;
-const isActive: boolean = true;
-const hobbies: string[] = ["reading", "coding"];
-const user: { name: string; age: number } = { name: "John", age: 25 };
+```json
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "@typescript-eslint/recommended",
+    "@typescript-eslint/recommended-requiring-type-checking",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/prefer-nullish-coalescing": "error",
+    "@typescript-eslint/prefer-optional-chain": "error",
+    "prefer-const": "error",
+    "no-var": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}
 ```
 
-#### 2. **Interfaces** - Define object shapes
+### Development Workflow Setup
+
+**Package.json Scripts:**
+
+```json
+{
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\"",
+    "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js"
+  }
+}
+```
+
+**VS Code Settings (.vscode/settings.json):**
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "typescript.preferences.importModuleSpecifier": "relative"
+}
+```
+
+### Verify Your Setup
+
+Create this comprehensive test to verify everything works:
+
+**src/components/SetupTest.tsx**
 
 ```tsx
-interface User {
-  name: string;
-  age: number;
-  email?: string; // Optional property
-  hobbies: string[];
+import React, { useState } from "react";
+
+interface SetupTestProps {
+  message: string;
 }
 
-const user: User = {
-  name: "John",
-  age: 25,
-  hobbies: ["reading", "coding"],
-  // email is optional, so we can omit it
-};
-```
-
-#### 3. **Union Types** - Multiple possible types
-
-```tsx
-type Status = "loading" | "success" | "error";
-type ButtonSize = "small" | "medium" | "large";
-
-const status: Status = "loading";
-const buttonSize: ButtonSize = "medium";
-```
-
-#### 4. **React.FC** - TypeScript component type
-
-```tsx
-import React from "react";
-
-const MyComponent: React.FC = () => {
-  return <div>Hello TypeScript!</div>;
-};
-```
-
-#### 5. **Event Handlers** - Properly typed events
-
-```tsx
-const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-  console.log("Button clicked!");
-};
-
-const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  console.log("Input value:", e.target.value);
-};
-```
-
-### What is a Component?
-
-A component is like a LEGO block - a reusable piece of UI that you can combine with other components to build complex interfaces. With TypeScript, we add type safety to make our components more reliable!
-
-### Exercise 1.1: Create Your First TypeScript Component
-
-**Step 1:** Open `src/App.tsx` and replace everything with:
-
-```tsx
-import React from "react";
-import "./App.css";
-
-const App: React.FC = () => {
-  const appTitle: string = "Hello, TypeScript React World!";
-  const isLearning: boolean = true;
-
-  return (
-    <div className="App">
-      <h1>{appTitle}</h1>
-      <p>This is my first React component with TypeScript!</p>
-      {isLearning && <p>🎉 You're learning TypeScript + React!</p>}
-    </div>
-  );
-};
-
-export default App;
-```
-
-**Step 2:** Save the file and check your browser - you should see your message!
-
-**TypeScript Benefits You Just Used:**
-
-- `React.FC` - Type annotation for functional components
-- `string` and `boolean` - Explicit type declarations
-- Type checking prevents runtime errors
-
-### Exercise 1.2: Create a Separate TypeScript Component
-
-**Step 1:** Create a new file `src/Welcome.tsx`:
-
-```tsx
-import React from "react";
-
-interface WelcomeProps {
-  userName?: string; // Optional prop
-  learningTopic: string; // Required prop
+interface TestResult {
+  feature: string;
+  status: "pass" | "fail";
+  description: string;
 }
 
-const Welcome: React.FC<WelcomeProps> = ({
-  userName = "Developer",
-  learningTopic,
-}) => {
-  const encouragements: string[] = [
-    "You're doing great!",
-    "Keep it up!",
-    "TypeScript makes React better!",
-  ];
+const SetupTest: React.FC<SetupTestProps> = ({ message }) => {
+  const [testResults] = useState<TestResult[]>([
+    {
+      feature: "TypeScript",
+      status: "pass",
+      description: "Types working correctly",
+    },
+    { feature: "React", status: "pass", description: "Components rendering" },
+    { feature: "Hooks", status: "pass", description: "useState functioning" },
+    { feature: "Styling", status: "pass", description: "CSS-in-JS working" },
+  ]);
 
-  const randomEncouragement: string =
-    encouragements[Math.floor(Math.random() * encouragements.length)];
+  const getStatusColor = (status: TestResult["status"]): string => {
+    return status === "pass" ? "#4caf50" : "#f44336";
+  };
+
+  const successCount = testResults.filter(
+    (test) => test.status === "pass"
+  ).length;
 
   return (
     <div
       style={{
-        backgroundColor: "#f0f8ff",
-        padding: "20px",
-        borderRadius: "8px",
-        margin: "10px 0",
+        padding: "24px",
+        backgroundColor: "#f8f9fa",
+        borderRadius: "12px",
+        border: "2px solid #e9ecef",
+        maxWidth: "600px",
+        margin: "20px auto",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       }}
     >
-      <h2>
-        Welcome to {learningTopic}, {userName}!
-      </h2>
-      <p>{randomEncouragement}</p>
-      <small>💡 This component uses TypeScript interfaces for props!</small>
-    </div>
-  );
-};
-
-export default Welcome;
-```
-
-**Step 2:** Import and use it in `App.tsx`:
-
-```tsx
-import React from "react";
-import Welcome from "./Welcome";
-import "./App.css";
-
-const App: React.FC = () => {
-  const appTitle: string = "Hello, TypeScript React World!";
-  const currentUser: string = "Future React Developer";
-
-  return (
-    <div className="App">
-      <h1>{appTitle}</h1>
-      <Welcome learningTopic="React + TypeScript" userName={currentUser} />
-      <Welcome learningTopic="Modern Web Development" />
-    </div>
-  );
-};
-
-export default App;
-```
-
-**TypeScript Magic:** Notice how TypeScript helps you:
-
-- ✅ `learningTopic` is required - TypeScript will error if you forget it
-- ✅ `userName` is optional - has a default value
-- ✅ IntelliSense shows you available props as you type
-
-### Key TypeScript Concepts Learned:
-
-- **Interfaces**: Define the shape of props with `interface`
-- **Optional Props**: Use `?` to make props optional (`userName?: string`)
-- **Type Annotations**: Explicitly declare types (`const name: string`)
-- **Array Types**: `string[]` for arrays of strings
-- **React.FC**: Type for functional components
-
-### TypeScript Benefits You'll Experience:
-
-1. **Compile-time Error Detection**: Catch bugs before runtime
-2. **Better IDE Support**: IntelliSense, autocomplete, and refactoring
-3. **Self-documenting Code**: Types serve as documentation
-4. **Safer Refactoring**: TypeScript ensures changes don't break existing code
-5. **Enhanced Team Collaboration**: Clear contracts between components
-
-### TypeScript Best Practices:
-
-```tsx
-// ✅ Good - Explicit types
-const [count, setCount] = useState<number>(0);
-const handleClick = (): void => {
-  /* ... */
-};
-
-// ❌ Avoid - Type inference when unclear
-const [count, setCount] = useState(0); // OK for simple cases
-const handleClick = () => {
-  /* ... */
-}; // Less clear
-
-// ✅ Good - Interface for complex props
-interface UserCardProps {
-  user: User;
-  onEdit?: (id: string) => void;
-}
-
-// ✅ Good - Union types for constrained values
-type ButtonVariant = "primary" | "secondary" | "danger";
-```
-
-### Practice Challenge 1.1:
-
-Create a `PersonCard` component with TypeScript that displays:
-
-- A person's name (required)
-- Their job title (required)
-- Their age (optional)
-- A short bio (required)
-- Whether they're available for hire (required boolean)
-
-**Solution:**
-
-```tsx
-// src/PersonCard.tsx
-import React from "react";
-
-interface Person {
-  name: string;
-  jobTitle: string;
-  age?: number;
-  bio: string;
-  availableForHire: boolean;
-}
-
-interface PersonCardProps {
-  person: Person;
-  cardColor?: string;
-}
-
-const PersonCard: React.FC<PersonCardProps> = ({
-  person,
-  cardColor = "#ffffff",
-}) => {
-  const { name, jobTitle, age, bio, availableForHire } = person;
-
-  return (
-    <div
-      style={{
-        border: "2px solid #333",
-        padding: "20px",
-        margin: "10px",
-        borderRadius: "10px",
-        backgroundColor: cardColor,
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-      }}
-    >
-      <h3>
-        {name} {age && <span style={{ color: "#666" }}>({age})</span>}
-      </h3>
-      <p>
-        <strong>Job:</strong> {jobTitle}
-      </p>
-      <p>
-        <strong>Bio:</strong> {bio}
-      </p>
-      <div
+      <h2
         style={{
-          display: "inline-block",
-          padding: "4px 8px",
-          borderRadius: "4px",
-          backgroundColor: availableForHire ? "#4CAF50" : "#f44336",
-          color: "white",
-          fontSize: "12px",
+          color: "#495057",
+          marginBottom: "16px",
+          fontSize: "24px",
+          fontWeight: "600",
         }}
       >
-        {availableForHire ? "✅ Available for hire" : "❌ Not available"}
+        🚀 TypeScript React Setup Complete!
+      </h2>
+
+      <p
+        style={{
+          color: "#6c757d",
+          marginBottom: "24px",
+          fontSize: "16px",
+          lineHeight: "1.5",
+        }}
+      >
+        {message}
+      </p>
+
+      <div style={{ marginBottom: "20px" }}>
+        <h3
+          style={{ color: "#495057", marginBottom: "12px", fontSize: "18px" }}
+        >
+          System Check ({successCount}/{testResults.length} passed)
+        </h3>
+
+        {testResults.map((test, index) => (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "8px 12px",
+              marginBottom: "8px",
+              backgroundColor: "white",
+              borderRadius: "6px",
+              border: `1px solid ${getStatusColor(test.status)}20`,
+            }}
+          >
+            <span
+              style={{
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                backgroundColor: getStatusColor(test.status),
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "12px",
+                fontWeight: "bold",
+                marginRight: "12px",
+              }}
+            >
+              {test.status === "pass" ? "✓" : "✗"}
+            </span>
+
+            <div>
+              <strong style={{ color: "#495057" }}>{test.feature}</strong>
+              <span style={{ color: "#6c757d", marginLeft: "8px" }}>
+                {test.description}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div
+        style={{
+          padding: "16px",
+          backgroundColor: "#d1ecf1",
+          borderRadius: "8px",
+          border: "1px solid #bee5eb",
+        }}
+      >
+        <h4 style={{ color: "#0c5460", margin: "0 0 8px 0", fontSize: "16px" }}>
+          ✅ Ready for Enterprise Development!
+        </h4>
+        <p style={{ color: "#0c5460", margin: 0, fontSize: "14px" }}>
+          Your development environment is properly configured with TypeScript,
+          ESLint, Prettier, and all necessary tools for professional React
+          development.
+        </p>
       </div>
     </div>
   );
 };
 
-export default PersonCard;
+export default SetupTest;
 ```
 
-**Usage in App.tsx:**
+**Update src/App.tsx:**
 
 ```tsx
-import PersonCard from "./PersonCard";
+import React from "react";
+import SetupTest from "./components/SetupTest";
+import "./App.css";
 
-const samplePerson: Person = {
-  name: "Sarah Johnson",
-  jobTitle: "Frontend Developer",
-  age: 28,
-  bio: "Passionate about creating amazing user experiences with React and TypeScript!",
-  availableForHire: true,
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <SetupTest message="Welcome to enterprise-grade React development with TypeScript!" />
+    </div>
+  );
 };
 
-// In your component's return:
-<PersonCard person={samplePerson} cardColor="#e3f2fd" />;
+export default App;
 ```
+
+**Run verification commands:**
+
+```bash
+# Start development server
+npm start
+
+# Check TypeScript compilation
+npm run type-check
+
+# Run linting
+npm run lint
+
+# Run tests
+npm test
+
+# Format code
+npm run format
+```
+
+If all commands run without errors and you see the setup test page, you're ready for enterprise React development!
 
 ---
 
-## 3. Chapter 2: Understanding TSX (TypeScript JSX)
+## 2. TypeScript Fundamentals for React
+
+### Essential TypeScript Concepts for React Development
+
+Before diving into React components, let's master the TypeScript concepts you'll use daily in enterprise React development.
+
+#### 1. **Type Annotations & Inference**
+
+```tsx
+// Explicit type annotations
+const userName: string = "John Doe";
+const age: number = 30;
+const isActive: boolean = true;
+
+// Type inference (TypeScript figures out the type)
+const userEmail = "john@example.com"; // inferred as string
+const userId = 123; // inferred as number
+
+// Arrays
+const tags: string[] = ["react", "typescript", "frontend"];
+const scores: Array<number> = [85, 92, 78, 96];
+
+// Function with typed parameters and return type
+const calculateTotal = (price: number, tax: number): number => {
+  return price + price * tax;
+};
+```
+
+#### 2. **Interfaces - Defining Object Shapes**
+
+```tsx
+// Basic interface
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+}
+
+// Interface with optional properties
+interface UserProfile {
+  id: number;
+  name: string;
+  email?: string; // Optional property
+  avatar?: string; // Optional property
+  lastLogin: Date;
+}
+
+// Interface with methods
+interface UserService {
+  getUser(id: number): Promise<User>;
+  updateUser(id: number, data: Partial<User>): Promise<User>;
+  deleteUser(id: number): Promise<void>;
+}
+
+// Extending interfaces
+interface AdminUser extends User {
+  permissions: string[];
+  canDeleteUsers: boolean;
+}
+```
+
+#### 3. **Union Types & Literal Types**
+
+```tsx
+// Union types - value can be one of several types
+type Status = "loading" | "success" | "error";
+type ID = string | number;
+
+// Using union types
+interface ApiResponse {
+  status: Status;
+  data?: any;
+  error?: string;
+}
+
+// Literal types for precise values
+type ButtonVariant = "primary" | "secondary" | "danger";
+type Size = "small" | "medium" | "large";
+
+interface ButtonProps {
+  variant: ButtonVariant;
+  size: Size;
+  disabled?: boolean;
+}
+```
+
+#### 4. **Generic Types - Reusable Type Definitions**
+
+```tsx
+// Generic interface for API responses
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+  message: string;
+}
+
+// Usage with different data types
+type UserResponse = ApiResponse<User>;
+type UsersResponse = ApiResponse<User[]>;
+
+// Generic function
+function createArray<T>(item: T, count: number): T[] {
+  return new Array(count).fill(item);
+}
+
+const stringArray = createArray("hello", 3); // string[]
+const numberArray = createArray(42, 5); // number[]
+```
+
+#### 5. **Utility Types - Common Type Transformations**
+
+```tsx
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+}
+
+// Partial - makes all properties optional
+type UserUpdate = Partial<User>;
+// { id?: number; name?: string; email?: string; age?: number; }
+
+// Pick - select specific properties
+type UserSummary = Pick<User, "id" | "name">;
+// { id: number; name: string; }
+
+// Omit - exclude specific properties
+type CreateUser = Omit<User, "id">;
+// { name: string; email: string; age: number; }
+
+// Record - create object type with specific keys and values
+type UserRoles = Record<string, boolean>;
+// { [key: string]: boolean }
+```
+
+#### 6. **React-Specific Types**
+
+```tsx
+import React from "react";
+
+// Component prop types
+interface ComponentProps {
+  title: string;
+  children: React.ReactNode; // Can be any valid React child
+  onClick?: () => void; // Optional event handler
+  className?: string; // Optional CSS class
+}
+
+// Event handler types
+interface FormProps {
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+// Ref types
+interface InputComponentProps {
+  inputRef: React.RefObject<HTMLInputElement>;
+}
+
+// CSS Properties type
+interface StyledComponentProps {
+  customStyle?: React.CSSProperties;
+}
+```
+
+### TypeScript Best Practices for React
+
+#### 1. **Always Use Interfaces for Props**
+
+```tsx
+// ✅ Good - Clear interface definition
+interface UserCardProps {
+  user: User;
+  onEdit: (userId: number) => void;
+  showActions?: boolean;
+}
+
+const UserCard: React.FC<UserCardProps> = ({
+  user,
+  onEdit,
+  showActions = true,
+}) => {
+  // Component implementation
+};
+
+// ❌ Avoid - Inline type definitions
+const UserCard: React.FC<{
+  user: { id: number; name: string };
+  onEdit: (id: number) => void;
+}> = ({ user, onEdit }) => {
+  // Component implementation
+};
+```
+
+#### 2. **Use Type Guards for Runtime Safety**
+
+```tsx
+// Type guard function
+function isUser(obj: any): obj is User {
+  return obj && typeof obj.id === "number" && typeof obj.name === "string";
+}
+
+// Usage in component
+const UserProfile: React.FC<{ userData: unknown }> = ({ userData }) => {
+  if (!isUser(userData)) {
+    return <div>Invalid user data</div>;
+  }
+
+  // TypeScript now knows userData is User type
+  return (
+    <div>
+      <h1>{userData.name}</h1>
+      <p>ID: {userData.id}</p>
+    </div>
+  );
+};
+```
+
+#### 3. **Prefer Union Types Over Enums**
+
+```tsx
+// ✅ Preferred - Union types
+type Theme = "light" | "dark" | "auto";
+
+// ✅ Also good - const assertion
+const THEMES = ["light", "dark", "auto"] as const;
+type Theme = (typeof THEMES)[number];
+
+// ❌ Avoid in most cases - Enums (add runtime overhead)
+enum Theme {
+  Light = "light",
+  Dark = "dark",
+  Auto = "auto",
+}
+```
+
+### Common TypeScript Patterns in React
+
+#### 1. **Conditional Prop Types**
+
+```tsx
+interface BaseProps {
+  title: string;
+}
+
+// Either provide href (link) or onClick (button)
+type ButtonProps = BaseProps &
+  ({ href: string; onClick?: never } | { href?: never; onClick: () => void });
+
+const ActionButton: React.FC<ButtonProps> = ({ title, href, onClick }) => {
+  if (href) {
+    return <a href={href}>{title}</a>;
+  }
+
+  return <button onClick={onClick}>{title}</button>;
+};
+```
+
+#### 2. **Generic Components**
+
+```tsx
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+  keyExtractor: (item: T) => string | number;
+}
+
+function List<T>({ items, renderItem, keyExtractor }: ListProps<T>) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={keyExtractor(item)}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
+}
+
+// Usage
+<List
+  items={users}
+  renderItem={(user) => <span>{user.name}</span>}
+  keyExtractor={(user) => user.id}
+/>;
+```
+
+### Exercise: TypeScript Practice
+
+Create a file `src/types/common.ts` and practice these concepts:
+
+```tsx
+// src/types/common.ts
+
+// 1. Define a Product interface
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  inStock: boolean;
+  tags?: string[];
+}
+
+// 2. Create utility types
+export type ProductSummary = Pick<Product, "id" | "name" | "price">;
+export type ProductUpdate = Partial<Omit<Product, "id">>;
+
+// 3. Define API response types
+export interface ApiResponse<T> {
+  data: T;
+  status: "success" | "error";
+  message?: string;
+}
+
+export type ProductsResponse = ApiResponse<Product[]>;
+export type ProductResponse = ApiResponse<Product>;
+
+// 4. Component prop interfaces
+export interface ProductCardProps {
+  product: Product;
+  onAddToCart: (productId: number) => void;
+  showFullDetails?: boolean;
+}
+
+export interface ProductListProps {
+  products: Product[];
+  loading: boolean;
+  error?: string;
+  onProductSelect: (product: Product) => void;
+}
+```
+
+This foundation will serve you throughout the tutorial and in real enterprise development!
+
+---
+
+## 3. Your First TypeScript React Component
+
+### Understanding React Components
+
+A React component is a self-contained piece of UI that encapsulates:
+
+- **Structure** (TSX markup)
+- **Behavior** (TypeScript logic)
+- **Presentation** (CSS styling)
+
+Think of components as custom HTML elements with superpowers!
+
+### Component Types in React + TypeScript
+
+#### 1. **Function Components (Recommended)**
+
+```tsx
+import React from "react";
+
+// Basic function component with TypeScript
+const Greeting: React.FC = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+// Function component with props
+interface GreetingProps {
+  name: string;
+  age?: number;
+}
+
+const PersonalGreeting: React.FC<GreetingProps> = ({ name, age }) => {
+  return (
+    <div>
+      <h1>Hello, {name}!</h1>
+      {age && <p>You are {age} years old.</p>}
+    </div>
+  );
+};
+```
+
+#### 2. **Arrow Function Components (Alternative Syntax)**
+
+```tsx
+// Arrow function with explicit return
+const Button: React.FC<{ label: string }> = ({ label }) => {
+  return <button>{label}</button>;
+};
+
+// Arrow function with implicit return
+const Icon: React.FC<{ name: string }> = ({ name }) => (
+  <span className={`icon-${name}`} />
+);
+```
+
+### Exercise 3.1: Your First Enterprise Component
+
+Let's build a reusable `UserCard` component that you might find in a real enterprise application:
+
+**src/components/UserCard.tsx**
+
+```tsx
+import React from "react";
+
+// Define types for our component
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: "admin" | "user" | "manager";
+  avatar?: string;
+  isOnline: boolean;
+}
+
+interface UserCardProps {
+  user: User;
+  showActions?: boolean;
+  onEdit?: (userId: number) => void;
+  onDelete?: (userId: number) => void;
+}
+
+const UserCard: React.FC<UserCardProps> = ({
+  user,
+  showActions = false,
+  onEdit,
+  onDelete,
+}) => {
+  // Helper function to get role color
+  const getRoleColor = (role: User["role"]): string => {
+    const roleColors: Record<User["role"], string> = {
+      admin: "#ff4444",
+      manager: "#44ff44",
+      user: "#4444ff",
+    };
+    return roleColors[role];
+  };
+
+  // Event handlers with proper typing
+  const handleEdit = (): void => {
+    if (onEdit) {
+      onEdit(user.id);
+    }
+  };
+
+  const handleDelete = (): void => {
+    if (onDelete && window.confirm(`Delete user ${user.name}?`)) {
+      onDelete(user.id);
+    }
+  };
+
+  return (
+    <div
+      style={{
+        border: "1px solid #e0e0e0",
+        borderRadius: "8px",
+        padding: "16px",
+        margin: "8px",
+        backgroundColor: "#fafafa",
+        position: "relative",
+      }}
+    >
+      {/* Online status indicator */}
+      <div
+        style={{
+          position: "absolute",
+          top: "8px",
+          right: "8px",
+          width: "12px",
+          height: "12px",
+          borderRadius: "50%",
+          backgroundColor: user.isOnline ? "#4caf50" : "#9e9e9e",
+        }}
+      />
+
+      {/* User avatar */}
+      <div
+        style={{
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          backgroundColor: "#ddd",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: "12px",
+          fontSize: "24px",
+          fontWeight: "bold",
+          color: "#666",
+        }}
+      >
+        {user.avatar ? (
+          <img
+            src={user.avatar}
+            alt={user.name}
+            style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+          />
+        ) : (
+          user.name.charAt(0).toUpperCase()
+        )}
+      </div>
+
+      {/* User info */}
+      <h3 style={{ margin: "0 0 8px 0", fontSize: "18px" }}>{user.name}</h3>
+
+      <p style={{ margin: "0 0 8px 0", color: "#666", fontSize: "14px" }}>
+        {user.email}
+      </p>
+
+      {/* Role badge */}
+      <span
+        style={{
+          display: "inline-block",
+          padding: "4px 8px",
+          borderRadius: "4px",
+          backgroundColor: getRoleColor(user.role),
+          color: "white",
+          fontSize: "12px",
+          fontWeight: "bold",
+          textTransform: "uppercase",
+        }}
+      >
+        {user.role}
+      </span>
+
+      {/* Action buttons */}
+      {showActions && (
+        <div style={{ marginTop: "12px", display: "flex", gap: "8px" }}>
+          <button
+            onClick={handleEdit}
+            style={{
+              padding: "6px 12px",
+              border: "1px solid #2196f3",
+              backgroundColor: "#2196f3",
+              color: "white",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "12px",
+            }}
+          >
+            Edit
+          </button>
+          <button
+            onClick={handleDelete}
+            style={{
+              padding: "6px 12px",
+              border: "1px solid #f44336",
+              backgroundColor: "#f44336",
+              color: "white",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "12px",
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default UserCard;
+```
+
+### Exercise 3.2: Using Components with Props
+
+**Update src/App.tsx:**
+
+```tsx
+import React from "react";
+import UserCard from "./components/UserCard";
+import "./App.css";
+
+// Define User type (move to types file in real app)
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: "admin" | "user" | "manager";
+  avatar?: string;
+  isOnline: boolean;
+}
+
+const App: React.FC = () => {
+  // Sample data with proper typing
+  const users: User[] = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      email: "sarah.johnson@company.com",
+      role: "admin",
+      isOnline: true,
+    },
+    {
+      id: 2,
+      name: "Mike Chen",
+      email: "mike.chen@company.com",
+      role: "manager",
+      isOnline: false,
+    },
+    {
+      id: 3,
+      name: "Emily Davis",
+      email: "emily.davis@company.com",
+      role: "user",
+      isOnline: true,
+    },
+  ];
+
+  // Event handlers with proper typing
+  const handleEditUser = (userId: number): void => {
+    console.log(`Editing user with ID: ${userId}`);
+    // In a real app, this might open a modal or navigate to an edit page
+  };
+
+  const handleDeleteUser = (userId: number): void => {
+    console.log(`Deleting user with ID: ${userId}`);
+    // In a real app, this might call an API to delete the user
+  };
+
+  return (
+    <div className="App">
+      <header style={{ padding: "20px", backgroundColor: "#f5f5f5" }}>
+        <h1>Enterprise User Management</h1>
+        <p>A TypeScript React Application</p>
+      </header>
+
+      <main style={{ padding: "20px" }}>
+        <h2>Team Members</h2>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: "16px",
+          }}
+        >
+          {users.map((user) => (
+            <UserCard
+              key={user.id}
+              user={user}
+              showActions={true}
+              onEdit={handleEditUser}
+              onDelete={handleDeleteUser}
+            />
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default App;
+```
+
+### Key TypeScript React Concepts Learned
+
+#### 1. **Interface Definition**
+
+```tsx
+interface UserCardProps {
+  user: User; // Required object prop
+  showActions?: boolean; // Optional boolean prop
+  onEdit?: (userId: number) => void; // Optional function prop
+}
+```
+
+#### 2. **Event Handler Typing**
+
+```tsx
+const handleEdit = (): void => {
+  // Function returns nothing (void)
+};
+
+const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+  // Function receives a typed event parameter
+};
+```
+
+#### 3. **Union Types for Strict Values**
+
+```tsx
+type Role = "admin" | "user" | "manager"; // Only these values allowed
+```
+
+#### 4. **Record Types for Object Mapping**
+
+```tsx
+const roleColors: Record<User["role"], string> = {
+  admin: "#ff4444",
+  manager: "#44ff44",
+  user: "#4444ff",
+};
+```
+
+### Component Best Practices
+
+#### 1. **Single Responsibility Principle**
+
+```tsx
+// ✅ Good - Component has one clear purpose
+const UserAvatar: React.FC<{ user: User }> = ({ user }) => {
+  // Just handles avatar display
+};
+
+// ❌ Avoid - Component doing too many things
+const UserEverything: React.FC = () => {
+  // Handles avatar, profile, settings, notifications...
+};
+```
+
+#### 2. **Prop Validation with TypeScript**
+
+```tsx
+// ✅ Good - Strict typing
+interface ButtonProps {
+  variant: "primary" | "secondary" | "danger";
+  size: "small" | "medium" | "large";
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+// ❌ Avoid - Loose typing
+interface ButtonProps {
+  variant?: string;
+  size?: any;
+  onClick?: Function;
+  children?: any;
+}
+```
+
+#### 3. **Extracting Types to Separate Files**
+
+Create `src/types/user.ts`:
+
+```tsx
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: "admin" | "user" | "manager";
+  avatar?: string;
+  isOnline: boolean;
+}
+
+export interface UserCardProps {
+  user: User;
+  showActions?: boolean;
+  onEdit?: (userId: number) => void;
+  onDelete?: (userId: number) => void;
+}
+```
+
+Then import in components:
+
+```tsx
+import { User, UserCardProps } from "../types/user";
+```
+
+### Practice Challenge 3.1
+
+Create a `ProductCard` component for an e-commerce app:
+
+**Requirements:**
+
+- Display product name, price, and image
+- Show "In Stock" or "Out of Stock" status with different colors
+- Include an "Add to Cart" button (disabled if out of stock)
+- Optional discount percentage that shows a strikethrough original price
+- TypeScript interfaces for all props
+
+**Bonus:** Make the component responsive and add hover effects!
+
+This exercise combines TypeScript knowledge with practical React component development that you'll use in enterprise applications.
+
+---
+
+## 4. TSX Syntax & Best Practices
 
 ### What is TSX?
 
-TSX is TypeScript's version of JSX - it's a syntax extension that lets you write HTML-like code in your TypeScript files with full type safety!
+TSX is TypeScript's version of JSX - it's a syntax extension that lets you write HTML-like code in your TypeScript files with full type safety! Think of it as HTML supercharged with TypeScript's type system.
 
-### TSX Rules You Must Know:
+### TSX Rules You Must Know
 
 #### Rule 1: Return a Single Parent Element
 
@@ -433,12 +1237,22 @@ const GoodComponent: React.FC = () => {
 }
 
 // ✅ Also correct - Using React Fragment
-const AnotherGoodComponent: React.FC = () => {
+const FragmentComponent: React.FC = () => {
   return (
     <>
       <h1>Title</h1>
       <p>Paragraph</p>
     </>
+  );
+}
+
+// ✅ Explicit Fragment
+const ExplicitFragmentComponent: React.FC = () => {
+  return (
+    <React.Fragment>
+      <h1>Title</h1>
+      <p>Paragraph</p>
+    </React.Fragment>
   );
 }
 ```
@@ -451,6 +1265,18 @@ const AnotherGoodComponent: React.FC = () => {
 
 // ✅ Correct
 <div className="my-class">Content</div>
+
+// ✅ Dynamic className with TypeScript
+interface ComponentProps {
+  isActive: boolean;
+  theme: 'light' | 'dark';
+}
+
+const StyledComponent: React.FC<ComponentProps> = ({ isActive, theme }) => {
+  const className: string = `component ${theme} ${isActive ? 'active' : 'inactive'}`;
+
+  return <div className={className}>Content</div>;
+};
 ```
 
 #### Rule 3: Self-closing tags must end with `/>`
@@ -459,10 +1285,12 @@ const AnotherGoodComponent: React.FC = () => {
 // ❌ Wrong
 <img src="image.jpg">
 <br>
+<input type="text">
 
 // ✅ Correct
 <img src="image.jpg" />
 <br />
+<input type="text" />
 ```
 
 #### Rule 4: TypeScript expressions go in curly braces
@@ -488,2201 +1316,412 @@ const GreetingComponent: React.FC = () => {
 };
 ```
 
-### Exercise 2.1: Practice TSX with TypeScript
+### Advanced TSX Patterns
 
-Create a `ProfileCard` component that uses TSX expressions with proper typing:
-
-```tsx
-// src/ProfileCard.tsx
-import React from "react";
-
-interface User {
-  name: string;
-  age: number;
-  profession: string;
-  hobbies: string[];
-  email?: string; // Optional field
-}
-
-interface ProfileCardProps {
-  user: User;
-  showBirthYear?: boolean;
-}
-
-const ProfileCard: React.FC<ProfileCardProps> = ({
-  user,
-  showBirthYear = true,
-}) => {
-  const currentYear: number = new Date().getFullYear();
-  const birthYear: number = currentYear - user.age;
-  const hobbyCount: number = user.hobbies.length;
-
-  // Type-safe array method
-  const hobbyList: string = user.hobbies.join(", ");
-
-  return (
-    <div
-      className="profile-card"
-      style={{
-        border: "2px solid #4CAF50",
-        borderRadius: "12px",
-        padding: "20px",
-        margin: "16px",
-        backgroundColor: "#f9f9f9",
-        maxWidth: "400px",
-      }}
-    >
-      <h2 style={{ color: "#2196F3" }}>{user.name}</h2>
-      <p>
-        <strong>Age:</strong> {user.age}
-      </p>
-      <p>
-        <strong>Profession:</strong> {user.profession}
-      </p>
-      {showBirthYear && (
-        <p>
-          <strong>Born in:</strong> {birthYear}
-        </p>
-      )}
-      {user.email && (
-        <p>
-          <strong>Email:</strong> {user.email}
-        </p>
-      )}
-      <p>
-        <strong>Hobbies:</strong> {hobbyList}
-      </p>
-      <p>
-        <strong>Number of hobbies:</strong> {hobbyCount}
-      </p>
-
-      {/* Conditional rendering with TypeScript */}
-      {hobbyCount > 3 ? (
-        <p style={{ color: "#FF9800" }}>🌟 Wow, you have many hobbies!</p>
-      ) : (
-        <p style={{ color: "#4CAF50" }}>📚 Room for more hobbies!</p>
-      )}
-    </div>
-  );
-};
-
-export default ProfileCard;
-```
-
-**Usage in App.tsx:**
+#### 1. **Conditional Rendering with Type Safety**
 
 ```tsx
-import ProfileCard from "./ProfileCard";
-
-const App: React.FC = () => {
-  const sampleUser: User = {
-    name: "Sarah Johnson",
-    age: 28,
-    profession: "UX Designer",
-    hobbies: ["Photography", "Hiking", "Reading", "Cooking"],
-    email: "sarah@example.com",
-  };
-
-  const anotherUser: User = {
-    name: "Mike Chen",
-    age: 32,
-    profession: "Software Engineer",
-    hobbies: ["Gaming", "Basketball"],
-  };
-
-  return (
-    <div className="App">
-      <h1>User Profiles</h1>
-      <ProfileCard user={sampleUser} showBirthYear={true} />
-      <ProfileCard user={anotherUser} showBirthYear={false} />
-    </div>
-  );
-};
-```
-
-### Exercise 2.2: Styling with TSX and TypeScript
-
-```tsx
-// src/StyledComponent.tsx
-import React from "react";
-
-interface StyleProps {
-  backgroundColor?: string;
-  textColor?: string;
+interface StatusMessageProps {
+  status: "loading" | "success" | "error";
+  message?: string;
 }
 
-interface StyledComponentProps {
-  title: string;
-  description: string;
-  styling?: StyleProps;
-}
-
-const StyledComponent: React.FC<StyledComponentProps> = ({
-  title,
-  description,
-  styling = {},
-}) => {
-  // Type-safe style objects
-  const cardStyle: React.CSSProperties = {
-    backgroundColor: styling.backgroundColor || "#f0f0f0",
-    padding: "20px",
-    borderRadius: "8px",
-    margin: "10px",
-    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-    transition: "transform 0.2s ease",
-  };
-
-  const titleStyle: React.CSSProperties = {
-    color: styling.textColor || "#333",
-    fontSize: "24px",
-    marginBottom: "10px",
-    fontWeight: "bold",
-  };
-
-  const textStyle: React.CSSProperties = {
-    color: styling.textColor || "#666",
-    fontSize: "16px",
-    lineHeight: "1.5",
-  };
-
-  return (
-    <div style={cardStyle}>
-      <h2 style={titleStyle}>{title}</h2>
-      <p style={textStyle}>{description}</p>
-    </div>
-  );
-};
-
-export default StyledComponent;
-```
-
-### Practice Challenge 2.1:
-
-Create a `WeatherCard` component with TypeScript that:
-
-- Shows a city name
-- Displays temperature in both Celsius and Fahrenheit
-- Shows weather condition with appropriate emoji
-- Uses type-safe inline styles
-
-**Solution:**
-
-```tsx
-import React from "react";
-
-interface WeatherData {
-  city: string;
-  tempCelsius: number;
-  condition: "Sunny" | "Rainy" | "Cloudy" | "Snowy"; // Union type for valid conditions
-  humidity?: number;
-}
-
-interface WeatherCardProps {
-  weather: WeatherData;
-  showHumidity?: boolean;
-}
-
-const WeatherCard: React.FC<WeatherCardProps> = ({
-  weather,
-  showHumidity = false,
-}) => {
-  const tempFahrenheit: number = Math.round((weather.tempCelsius * 9) / 5 + 32);
-
-  // Type-safe condition mapping
-  const weatherEmojis: Record<WeatherData["condition"], string> = {
-    Sunny: "☀️",
-    Rainy: "🌧️",
-    Cloudy: "☁️",
-    Snowy: "❄️",
-  };
-
-  const cardStyle: React.CSSProperties = {
-    backgroundColor: getBackgroundColor(weather.condition),
-    padding: "20px",
-    borderRadius: "10px",
-    textAlign: "center",
-    color: "white",
-    minWidth: "250px",
-    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-  };
-
-  function getBackgroundColor(condition: WeatherData["condition"]): string {
-    const colors: Record<WeatherData["condition"], string> = {
-      Sunny: "#87CEEB",
-      Rainy: "#778899",
-      Cloudy: "#696969",
-      Snowy: "#B0C4DE",
+const StatusMessage: React.FC<StatusMessageProps> = ({ status, message }) => {
+  // Type-safe conditional rendering
+  const getStatusIcon = (status: StatusMessageProps["status"]): string => {
+    const icons: Record<StatusMessageProps["status"], string> = {
+      loading: "⏳",
+      success: "✅",
+      error: "❌",
     };
-    return colors[condition];
-  }
-
-  return (
-    <div style={cardStyle}>
-      <h2>
-        {weather.city} {weatherEmojis[weather.condition]}
-      </h2>
-      <h3>
-        {weather.tempCelsius}°C / {tempFahrenheit}°F
-      </h3>
-      <p>{weather.condition}</p>
-      {showHumidity && weather.humidity && <p>Humidity: {weather.humidity}%</p>}
-    </div>
-  );
-};
-
-export default WeatherCard;
-```
-
-**Usage:**
-
-```tsx
-const weatherData: WeatherData = {
-  city: "New York",
-  tempCelsius: 22,
-  condition: "Sunny",
-  humidity: 65,
-};
-
-<WeatherCard weather={weatherData} showHumidity={true} />;
-```
-
-### TypeScript Benefits in This Chapter:
-
-- ✅ **Type-safe props**: Interface definitions prevent wrong data types
-- ✅ **Union types**: `'Sunny' | 'Rainy'` restricts to valid values only
-- ✅ **Optional properties**: `humidity?: number` for flexible data
-- ✅ **React.CSSProperties**: Type-safe inline styles
-- ✅ **Record types**: Type-safe object mapping for emojis and colors
-
----
-
-## 5. Chapter 4: State and Event Handling
-
-### What is State?
-
-State is like a component's memory - it remembers information that can change over time.
-
-### Exercise 4.1: Your First State with TypeScript
-
-```tsx
-// src/Counter.tsx
-import React, { useState } from "react";
-
-const Counter: React.FC = () => {
-  // useState with TypeScript - type is inferred as number
-  const [count, setCount] = useState<number>(0);
-
-  const handleIncrement = (): void => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  const handleDecrement = (): void => {
-    setCount((prevCount) => prevCount - 1);
-  };
-
-  const handleReset = (): void => {
-    setCount(0);
+    return icons[status];
   };
 
   return (
     <div>
-      <h2>Counter: {count}</h2>
-      <button onClick={handleIncrement}>Increment</button>
-      <button onClick={handleDecrement}>Decrement</button>
-      <button onClick={handleReset}>Reset</button>
-    </div>
-  );
-};
-
-export default Counter;
-```
-
-### Exercise 4.2: State with Different Data Types in TypeScript
-
-```tsx
-// src/UserProfile.tsx
-import React, { useState } from "react";
-
-interface User {
-  name: string;
-  age: number;
-  hobbies: string[];
-}
-
-const UserProfile: React.FC = () => {
-  const [name, setName] = useState<string>("");
-  const [age, setAge] = useState<number>(0);
-  const [hobbies, setHobbies] = useState<string[]>([]);
-  const [isVisible, setIsVisible] = useState<boolean>(true);
-
-  const addHobby = (): void => {
-    const newHobby: string | null = prompt("Enter a hobby:");
-    if (newHobby && newHobby.trim()) {
-      setHobbies((prevHobbies) => [...prevHobbies, newHobby.trim()]);
-    }
-  };
-
-  const removeHobby = (indexToRemove: number): void => {
-    setHobbies((prevHobbies) =>
-      prevHobbies.filter((_, index) => index !== indexToRemove)
-    );
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setName(e.target.value);
-  };
-
-  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value: number = parseInt(e.target.value) || 0;
-    setAge(value);
-  };
-
-  const toggleVisibility = (): void => {
-    setIsVisible((prev) => !prev);
-  };
-
-  if (!isVisible) {
-    return (
-      <div>
-        <button onClick={toggleVisibility}>Show Profile</button>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ padding: "20px", border: "1px solid #ccc" }}>
-      <button onClick={toggleVisibility}>Hide Profile</button>
-
-      <div>
-        <label>Name: </label>
-        <input
-          value={name}
-          onChange={handleNameChange}
-          placeholder="Enter your name"
-        />
-      </div>
-
-      <div>
-        <label>Age: </label>
-        <input type="number" value={age} onChange={handleAgeChange} />
-      </div>
-
-      <div>
-        <h3>Profile:</h3>
-        <p>Name: {name || "Not provided"}</p>
-        <p>Age: {age}</p>
-      </div>
-
-      <div>
-        <h3>Hobbies:</h3>
-        <button onClick={addHobby}>Add Hobby</button>
-        <ul>
-          {hobbies.map((hobby: string, index: number) => (
-            <li key={index}>
-              {hobby}
-              <button onClick={() => removeHobby(index)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-export default UserProfile;
-```
-
-### Exercise 4.3: Event Handling with TypeScript
-
-```tsx
-// src/EventDemo.tsx
-import React, { useState } from "react";
-
-const EventDemo: React.FC = () => {
-  const [message, setMessage] = useState<string>("");
-  const [clickCount, setClickCount] = useState<number>(0);
-  const [inputValue, setInputValue] = useState<string>("");
-
-  const handleClick = (): void => {
-    setClickCount((prevCount) => prevCount + 1);
-    setMessage(`Button clicked ${clickCount + 1} times!`);
-  };
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setInputValue(event.target.value);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault(); // Prevents page reload
-    alert(`You entered: ${inputValue}`);
-    setInputValue(""); // Clear the input
-  };
-
-  const handleKeyPress = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ): void => {
-    if (event.key === "Enter") {
-      setMessage(`You pressed Enter! Input value: ${inputValue}`);
-    }
-  };
-
-  return (
-    <div style={{ padding: "20px" }}>
-      <h2>Event Handling Demo</h2>
-
-      <div>
-        <button onClick={handleClick}>
-          Click me! (Clicked {clickCount} times)
-        </button>
-        <p>{message}</p>
-      </div>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyPress={handleKeyPress}
-          placeholder="Type something and press Enter or submit"
-        />
-        <button type="submit">Submit</button>
-      </form>
-
-      <p>Current input: {inputValue}</p>
-    </div>
-  );
-};
-
-export default EventDemo;
-```
-
-### Practice Challenge 4.1:
-
-Create a `ColorPicker` component that:
-
-- Has buttons for Red, Green, Blue, Yellow
-- Changes background color when buttons are clicked
-- Shows the current color name
-- Has a reset button to go back to white
-
-**Solution:**
-
-```tsx
-// src/ColorPicker.tsx
-import React, { useState } from "react";
-
-interface Color {
-  name: string;
-  value: string;
-}
-
-const ColorPicker: React.FC = () => {
-  const [currentColor, setCurrentColor] = useState<string>("white");
-
-  const colors: Color[] = [
-    { name: "Red", value: "#ff0000" },
-    { name: "Green", value: "#00ff00" },
-    { name: "Blue", value: "#0000ff" },
-    { name: "Yellow", value: "#ffff00" },
-  ];
-
-  const containerStyle: React.CSSProperties = {
-    padding: "20px",
-    backgroundColor: currentColor,
-    minHeight: "200px",
-    border: "2px solid #ccc",
-    textAlign: "center",
-  };
-
-  const handleColorChange = (colorValue: string): void => {
-    setCurrentColor(colorValue);
-  };
-
-  const handleReset = (): void => {
-    setCurrentColor("white");
-  };
-
-  return (
-    <div style={containerStyle}>
-      <h2>Color Picker</h2>
-      <p>Current Color: {currentColor}</p>
-
-      <div>
-        {colors.map((color: Color) => (
-          <button
-            key={color.name}
-            onClick={() => handleColorChange(color.value)}
-            style={{ margin: "5px", padding: "10px" }}
-          >
-            {color.name}
-          </button>
-        ))}
-
-        <button
-          onClick={handleReset}
-          style={{ margin: "5px", padding: "10px" }}
-        >
-          Reset
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default ColorPicker;
-```
-
----
-
-## 6. Chapter 5: Lists and Conditional Rendering
-
-### Rendering Lists
-
-Lists are everywhere in web applications. Here's how to render them in React:
-
-### Exercise 5.1: Basic List Rendering
-
-```tsx
-// src/ShoppingList.tsx
-import React, { useState } from "react";
-
-interface ShoppingItem {
-  id: number;
-  name: string;
-  bought: boolean;
-}
-
-const ShoppingList: React.FC = () => {
-  const [items, setItems] = useState<ShoppingItem[]>([
-    { id: 1, name: "Apples", bought: false },
-    { id: 2, name: "Bread", bought: true },
-    { id: 3, name: "Milk", bought: false },
-    { id: 4, name: "Eggs", bought: false },
-  ]);
-
-  const toggleItem = (id: number): void => {
-    setItems(
-      items.map((item) =>
-        item.id === id ? { ...item, bought: !item.bought } : item
-      )
-    );
-  };
-
-  return (
-    <div style={{ padding: "20px" }}>
-      <h2>Shopping List</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {items.map((item: ShoppingItem) => (
-          <li
-            key={item.id}
-            style={{
-              padding: "10px",
-              margin: "5px 0",
-              backgroundColor: item.bought ? "#d4edda" : "#f8f9fa",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-            onClick={() => toggleItem(item.id)}
-          >
-            <span
-              style={{
-                textDecoration: item.bought ? "line-through" : "none",
-              }}
-            >
-              {item.name}
-            </span>
-            {item.bought && " ✓"}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default ShoppingList;
-```
-
-### Exercise 5.2: Conditional Rendering
-
-```tsx
-// src/UserDashboard.tsx
-import React, { useState } from "react";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: "admin" | "user";
-  notifications: number;
-}
-
-const UserDashboard: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const loginUser = (): void => {
-    setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setUser({
-        id: 1,
-        name: "John Doe",
-        email: "john@example.com",
-        role: "admin",
-        notifications: 3,
-      });
-      setLoading(false);
-    }, 2000);
-  };
-
-  const logoutUser = (): void => {
-    setUser(null);
-  };
-
-  // Loading state
-  if (loading) {
-    return (
-      <div style={{ textAlign: "center", padding: "50px" }}>
-        <h2>Loading...</h2>
-        <div>Please wait while we log you in.</div>
-      </div>
-    );
-  }
-
-  // Not logged in state
-  if (!user) {
-    return (
-      <div style={{ textAlign: "center", padding: "50px" }}>
-        <h2>Welcome!</h2>
-        <p>Please log in to access your dashboard.</p>
-        <button
-          onClick={loginUser}
-          style={{ padding: "10px 20px", fontSize: "16px" }}
-        >
-          Login
-        </button>
-      </div>
-    );
-  }
-
-  // Logged in state
-  return (
-    <div style={{ padding: "20px" }}>
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderBottom: "1px solid #ccc",
-          paddingBottom: "10px",
-        }}
-      >
-        <h1>Dashboard</h1>
-        <div>
-          <span>Welcome, {user.name}!</span>
-          <button
-            onClick={logoutUser}
-            style={{ marginLeft: "10px", padding: "5px 10px" }}
-          >
-            Logout
-          </button>
+      {/* Simple conditional rendering */}
+      {status === "loading" && <p>Loading...</p>}
+
+      {/* Complex conditional rendering */}
+      {status === "success" ? (
+        <div style={{ color: "green" }}>
+          {getStatusIcon(status)} Success!
+          {message && <p>{message}</p>}
         </div>
-      </header>
-
-      <div style={{ marginTop: "20px" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "20px",
-          }}
-        >
-          <div
-            style={{
-              padding: "20px",
-              border: "1px solid #ccc",
-              borderRadius: "8px",
-            }}
-          >
-            <h3>Profile</h3>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <p>Role: {user.role}</p>
-          </div>
-
-          <div
-            style={{
-              padding: "20px",
-              border: "1px solid #ccc",
-              borderRadius: "8px",
-            }}
-          >
-            <h3>Notifications</h3>
-            {user.notifications > 0 ? (
-              <p style={{ color: "red" }}>
-                You have {user.notifications} new notifications!
-              </p>
-            ) : (
-              <p style={{ color: "green" }}>No new notifications</p>
-            )}
-          </div>
-
-          {user.role === "admin" && (
-            <div
-              style={{
-                padding: "20px",
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-              }}
-            >
-              <h3>Admin Panel</h3>
-              <p>You have admin access!</p>
-              <button>Manage Users</button>
-            </div>
-          )}
+      ) : status === "error" ? (
+        <div style={{ color: "red" }}>
+          {getStatusIcon(status)} Error!
+          {message && <p>{message}</p>}
         </div>
-      </div>
+      ) : (
+        <div>{getStatusIcon(status)} Loading...</div>
+      )}
     </div>
   );
 };
-
-export default UserDashboard;
 ```
 
-### Exercise 5.3: Dynamic Lists with Add/Remove
+#### 2. **Lists and Keys with TypeScript**
 
 ```tsx
-// src/TodoApp.tsx
-import React, { useState } from "react";
-
-interface Todo {
+interface TodoItem {
   id: number;
   text: string;
   completed: boolean;
-  createdAt: string;
+  priority: "low" | "medium" | "high";
 }
 
-type FilterType = "all" | "active" | "completed";
+interface TodoListProps {
+  todos: TodoItem[];
+  onToggle: (id: number) => void;
+}
 
-const TodoApp: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [inputValue, setInputValue] = useState<string>("");
-  const [filter, setFilter] = useState<FilterType>("all");
-
-  const addTodo = (): void => {
-    if (inputValue.trim()) {
-      const newTodo: Todo = {
-        id: Date.now(),
-        text: inputValue.trim(),
-        completed: false,
-        createdAt: new Date().toLocaleString(),
-      };
-      setTodos([...todos, newTodo]);
-      setInputValue("");
-    }
+const TodoList: React.FC<TodoListProps> = ({ todos, onToggle }) => {
+  const getPriorityColor = (priority: TodoItem["priority"]): string => {
+    const colors: Record<TodoItem["priority"], string> = {
+      low: "#4caf50",
+      medium: "#ff9800",
+      high: "#f44336",
+    };
+    return colors[priority];
   };
-
-  const toggleTodo = (id: number): void => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  const deleteTodo = (id: number): void => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const clearCompleted = (): void => {
-    setTodos(todos.filter((todo) => !todo.completed));
-  };
-
-  const getFilteredTodos = (): Todo[] => {
-    switch (filter) {
-      case "active":
-        return todos.filter((todo) => !todo.completed);
-      case "completed":
-        return todos.filter((todo) => todo.completed);
-      default:
-        return todos;
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setInputValue(e.target.value);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === "Enter") {
-      addTodo();
-    }
-  };
-
-  const handleFilterChange = (filterType: FilterType): void => {
-    setFilter(filterType);
-  };
-
-  const filteredTodos = getFilteredTodos();
-  const activeCount = todos.filter((todo) => !todo.completed).length;
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-      <h1>Todo App</h1>
-
-      {/* Add Todo */}
-      <div style={{ marginBottom: "20px" }}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyPress={handleKeyPress}
-          placeholder="What needs to be done?"
+    <ul>
+      {todos.map((todo) => (
+        <li
+          key={todo.id} // Always provide unique keys
           style={{
-            width: "70%",
-            padding: "10px",
-            fontSize: "16px",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
-          }}
-        />
-        <button
-          onClick={addTodo}
-          style={{
-            width: "25%",
-            padding: "10px",
-            marginLeft: "5%",
-            fontSize: "16px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
+            textDecoration: todo.completed ? "line-through" : "none",
+            color: todo.completed ? "#999" : "#000",
           }}
         >
-          Add
-        </button>
-      </div>
-
-      {/* Filter Buttons */}
-      <div style={{ marginBottom: "20px" }}>
-        {(["all", "active", "completed"] as FilterType[]).map((filterType) => (
-          <button
-            key={filterType}
-            onClick={() => handleFilterChange(filterType)}
+          <span
             style={{
-              margin: "0 5px",
-              padding: "5px 15px",
-              backgroundColor: filter === filterType ? "#007bff" : "#f8f9fa",
-              color: filter === filterType ? "white" : "black",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              cursor: "pointer",
+              display: "inline-block",
+              width: "12px",
+              height: "12px",
+              borderRadius: "50%",
+              backgroundColor: getPriorityColor(todo.priority),
+              marginRight: "8px",
             }}
-          >
-            {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+          />
+          <button onClick={() => onToggle(todo.id)}>
+            {todo.completed ? "✓" : "○"}
           </button>
-        ))}
-      </div>
-
-      {/* Todo List */}
-      {filteredTodos.length === 0 ? (
-        <p style={{ textAlign: "center", color: "#666" }}>
-          {filter === "all" ? "No todos yet!" : `No ${filter} todos!`}
-        </p>
-      ) : (
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          {filteredTodos.map((todo: Todo) => (
-            <li
-              key={todo.id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                padding: "15px",
-                margin: "5px 0",
-                backgroundColor: "#f8f9fa",
-                border: "1px solid #dee2e6",
-                borderRadius: "4px",
-              }}
-            >
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => toggleTodo(todo.id)}
-                style={{ marginRight: "10px" }}
-              />
-              <div style={{ flex: 1 }}>
-                <span
-                  style={{
-                    textDecoration: todo.completed ? "line-through" : "none",
-                    color: todo.completed ? "#6c757d" : "black",
-                    fontSize: "16px",
-                  }}
-                >
-                  {todo.text}
-                </span>
-                <div style={{ fontSize: "12px", color: "#6c757d" }}>
-                  Created: {todo.createdAt}
-                </div>
-              </div>
-              <button
-                onClick={() => deleteTodo(todo.id)}
-                style={{
-                  backgroundColor: "#dc3545",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  padding: "5px 10px",
-                  cursor: "pointer",
-                }}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* Footer */}
-      {todos.length > 0 && (
-        <div
-          style={{
-            marginTop: "20px",
-            padding: "10px",
-            backgroundColor: "#f8f9fa",
-            border: "1px solid #dee2e6",
-            borderRadius: "4px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <span>
-            {activeCount} item{activeCount !== 1 ? "s" : ""} left
-          </span>
-          <button
-            onClick={clearCompleted}
-            disabled={todos.filter((todo) => todo.completed).length === 0}
-            style={{
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              padding: "5px 10px",
-              cursor: "pointer",
-              opacity:
-                todos.filter((todo) => todo.completed).length === 0 ? 0.5 : 1,
-            }}
-          >
-            Clear Completed
-          </button>
-        </div>
-      )}
-    </div>
+          {todo.text}
+        </li>
+      ))}
+    </ul>
   );
 };
-
-export default TodoApp;
 ```
 
-### Practice Challenge 5.1:
-
-Create a `MovieList` component that:
-
-- Displays a list of movies with title, year, and rating
-- Allows filtering by rating (All, 8+, 9+)
-- Allows sorting by title or year
-- Shows "No movies found" when filter returns empty results
-
----
-
-## 7. Chapter 6: Forms and User Input
-
-### Exercise 6.1: Controlled Components with TypeScript
+#### 3. **Event Handling with Proper Types**
 
 ```tsx
-// src/ContactForm.tsx
-import React, { useState } from 'react';
-
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-  category: 'general' | 'support' | 'sales' | 'feedback';
-  subscribe: boolean;
+interface FormComponentProps {
+  onSubmit: (data: { name: string; email: string }) => void;
 }
 
-interface FormErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-}
-
-const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: '',
-    category: 'general',
-    subscribe: false
+const FormComponent: React.FC<FormComponentProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
   });
 
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState<boolean>(false);
-
+  // Properly typed event handlers
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
-
-    setFormData(prev => ({
+    const { name, value } = event.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: value,
     }));
-
-    // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: undefined
-      }));
-    }
   };
 
-  const validateForm = (): FormErrors => {
-    const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
-
-    return newErrors;
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    onSubmit(formData);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-
-    const newErrors = validateForm();
-
-    if (Object.keys(newErrors).length === 0) {
-      // Form is valid
-      console.log('Form submitted:', formData);
-      setSubmitted(true);
-
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          message: '',
-          category: 'general',
-          subscribe: false
-        });
-        setSubmitted(false);
-      }, 3000);
-    } else {
-      setErrors(newErrors);
-    }
-  };
-
-  if (submitted) {
-    return (
-      <div style={{
-        textAlign: 'center',
-        padding: '50px',
-        backgroundColor: '#d4edda',
-        border: '1px solid #c3e6cb',
-        borderRadius: '8px',
-        margin: '20px'
-      }}>
-        <h2>Thank you!</h2>
-        <p>Your message has been sent successfully.</p>
-        <p>We'll get back to you soon!</p>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <h2>Contact Us</h2>
-
-      <form onSubmit={handleSubmit}>
-        {/* Name Field */}
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-            Name *
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            style={{
-              width: '100%',
-              padding: '10px',
-              border: `1px solid ${errors.name ? '#dc3545' : '#ccc'},
-              borderRadius: '4px',
-              fontSize: '16px'
-            }}
-            placeholder="Enter your full name"
-          />
-          {errors.name && (
-            <div style={{ color: '#dc3545', fontSize: '14px', marginTop: '5px' }}>
-              {errors.name}
-            </div>
-          )}
-        </div>
-
-        {/* Email Field */}
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-            Email *
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            style={{
-              width: '100%',
-              padding: '10px',
-              border: `1px solid ${errors.email ? '#dc3545' : '#ccc'}`,
-              borderRadius: '4px',
-              fontSize: '16px'
-            }}
-            placeholder="Enter your email address"
-          />
-          {errors.email && (
-            <div style={{ color: '#dc3545', fontSize: '14px', marginTop: '5px' }}>
-              {errors.email}
-            </div>
-          )}
-        </div>
-
-        {/* Category Select */}
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-            Category
-          </label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleInputChange}
-            style={{
-              width: '100%',
-              padding: '10px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              fontSize: '16px'
-            }}
-          >
-            <option value="general">General Inquiry</option>
-            <option value="support">Technical Support</option>
-            <option value="sales">Sales</option>
-            <option value="feedback">Feedback</option>
-          </select>
-        </div>
-
-        {/* Message Textarea */}
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-            Message *
-          </label>
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleInputChange}
-            rows="5"
-            style={{
-              width: '100%',
-              padding: '10px',
-              border: `1px solid ${errors.message ? '#dc3545' : '#ccc'}`,
-              borderRadius: '4px',
-              fontSize: '16px',
-              resize: 'vertical'
-            }}
-            placeholder="Enter your message here..."
-          />
-          {errors.message && (
-            <div style={{ color: '#dc3545', fontSize: '14px', marginTop: '5px' }}>
-              {errors.message}
-            </div>
-          )}
-          <div style={{ fontSize: '12px', color: '#6c757d', marginTop: '5px' }}>
-            Characters: {formData.message.length}
-          </div>
-        </div>
-
-        {/* Subscribe Checkbox */}
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'flex', alignItems: 'center' }}>
-            <input
-              type="checkbox"
-              name="subscribe"
-              checked={formData.subscribe}
-              onChange={handleInputChange}
-              style={{ marginRight: '10px' }}
-            />
-            Subscribe to our newsletter
-          </label>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          style={{
-            backgroundColor: '#007bff',
-            color: 'white',
-            padding: '12px 30px',
-            border: 'none',
-            borderRadius: '4px',
-            fontSize: '16px',
-            cursor: 'pointer',
-            width: '100%'
-          }}
-        >
-          Send Message
-        </button>
-      </form>
-
-      {/* Form Data Preview */}
-      <div style={{
-        marginTop: '30px',
-        padding: '15px',
-        backgroundColor: '#f8f9fa',
-        border: '1px solid #dee2e6',
-        borderRadius: '4px'
-      }}>
-        <h3>Form Data Preview:</h3>
-        <pre style={{ fontSize: '14px' }}>
-          {JSON.stringify(formData, null, 2)}
-        </pre>
-      </div>
-    </div>
-  );
-}
-
-export default ContactForm;
-```
-
----
-
-## 8. Chapter 7: useEffect and Side Effects
-
-### Exercise 7.1: Basic useEffect with TypeScript
-
-```tsx
-// src/TimerComponent.tsx
-import React, { useState, useEffect } from "react";
-
-const TimerComponent: React.FC = () => {
-  const [seconds, setSeconds] = useState<number>(0);
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-
-  // Effect that runs when isRunning changes
-  useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-
-    if (isRunning) {
-      interval = setInterval(() => {
-        setSeconds((prevSeconds) => prevSeconds + 1);
-      }, 1000);
-    } else {
-      if (interval) {
-        clearInterval(interval);
-      }
-    }
-
-    // Cleanup function
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
-  }, [isRunning]);
-
-  // Effect that runs only once (on mount)
-  useEffect(() => {
-    console.log("Timer component mounted");
-
-    // Cleanup function (runs on unmount)
-    return () => {
-      console.log("Timer component unmounted");
-    };
-  }, []); // Empty dependency array = run once
-
-  const formatTime = (seconds: number): string => {
-    const mins: number = Math.floor(seconds / 60);
-    const secs: number = seconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs
-      .toString()
-      .padStart(2, "0")}`;
-  };
-
-  const toggleTimer = (): void => {
-    setIsRunning((prev) => !prev);
-  };
-
-  const resetTimer = (): void => {
-    setSeconds(0);
-    setIsRunning(false);
-  };
-
-  return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>Timer</h2>
-      <div
-        style={{ fontSize: "48px", fontFamily: "monospace", margin: "20px 0" }}
-      >
-        {formatTime(seconds)}
-      </div>
-
-      <div>
-        <button
-          onClick={toggleTimer}
-          style={{
-            backgroundColor: isRunning ? "#dc3545" : "#28a745",
-            color: "white",
-            border: "none",
-            padding: "10px 20px",
-            margin: "0 5px",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          {isRunning ? "Stop" : "Start"}
-        </button>
-
-        <button
-          onClick={resetTimer}
-          style={{
-            backgroundColor: "#6c757d",
-            color: "white",
-            border: "none",
-            padding: "10px 20px",
-            margin: "0 5px",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Reset
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default TimerComponent;
-```
-
-### Exercise 7.2: Data Fetching Simulation
-
-```tsx
-// src/UserList.tsx
-import React, { useState, useEffect } from "react";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  city: string;
-}
-
-// Mock API function (simulates real API call)
-const fetchUsers = (): Promise<User[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          name: "John Doe",
-          email: "john@example.com",
-          city: "New York",
-        },
-        {
-          id: 2,
-          name: "Jane Smith",
-          email: "jane@example.com",
-          city: "Los Angeles",
-        },
-        {
-          id: 3,
-          name: "Bob Johnson",
-          email: "bob@example.com",
-          city: "Chicago",
-        },
-        {
-          id: 4,
-          name: "Alice Brown",
-          email: "alice@example.com",
-          city: "Houston",
-        },
-      ]);
-    }, 2000); // 2 second delay to simulate network request
-  });
-};
-
-const UserList: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [refetchTrigger, setRefetchTrigger] = useState<number>(0);
-
-  useEffect(() => {
-    const loadUsers = async (): Promise<void> => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        // Simulate API call
-        const userData = await fetchUsers();
-        setUsers(userData);
-      } catch (err) {
-        setError("Failed to load users");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUsers();
-  }, [refetchTrigger]); // Refetch when refetchTrigger changes
-
-  const handleRefresh = (): void => {
-    setRefetchTrigger((prev) => prev + 1);
-  };
-
-  if (loading) {
-    return (
-      <div style={{ textAlign: "center", padding: "50px" }}>
-        <h2>Loading Users...</h2>
-        <div style={{ fontSize: "20px" }}>⏳</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div style={{ textAlign: "center", padding: "50px" }}>
-        <h2>Error</h2>
-        <p style={{ color: "red" }}>{error}</p>
-        <button onClick={handleRefresh}>Try Again</button>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ padding: "20px" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <h2>Users ({users.length})</h2>
-        <button
-          onClick={handleRefresh}
-          style={{
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            padding: "8px 16px",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Refresh
-        </button>
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {users.map((user: User) => (
-          <div
-            key={user.id}
-            style={{
-              border: "1px solid #dee2e6",
-              borderRadius: "8px",
-              padding: "20px",
-              backgroundColor: "#f8f9fa",
-            }}
-          >
-            <h3 style={{ margin: "0 0 10px 0" }}>{user.name}</h3>
-            <p style={{ margin: "5px 0" }}>📧 {user.email}</p>
-            <p style={{ margin: "5px 0" }}>🏙️ {user.city}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default UserList;
-```
-
----
-
-## 9. Chapter 8: Custom Hooks
-
-### Exercise 8.1: Creating Your First Custom Hook with TypeScript
-
-```tsx
-// src/hooks/useCounter.ts
-import { useState } from "react";
-
-interface UseCounterReturn {
-  count: number;
-  increment: () => void;
-  decrement: () => void;
-  reset: () => void;
-  setValue: (value: number) => void;
-}
-
-const useCounter = (initialValue: number = 0): UseCounterReturn => {
-  const [count, setCount] = useState<number>(initialValue);
-
-  const increment = (): void => setCount((prev) => prev + 1);
-  const decrement = (): void => setCount((prev) => prev - 1);
-  const reset = (): void => setCount(initialValue);
-  const setValue = (value: number): void => setCount(value);
-
-  return {
-    count,
-    increment,
-    decrement,
-    reset,
-    setValue,
-  };
-};
-
-export default useCounter;
-```
-
-```tsx
-// src/CounterWithHook.tsx
-import React from "react";
-import useCounter from "./hooks/useCounter";
-
-const CounterWithHook: React.FC = () => {
-  const { count, increment, decrement, reset, setValue } = useCounter(10);
-
-  const handleSetToHundred = (): void => {
-    setValue(100);
-  };
-
-  return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>Counter with Custom Hook</h2>
-      <div style={{ fontSize: "32px", margin: "20px 0" }}>Count: {count}</div>
-
-      <div>
-        <button onClick={decrement}>-1</button>
-        <button onClick={increment}>+1</button>
-        <button onClick={reset}>Reset</button>
-        <button onClick={handleSetToHundred}>Set to 100</button>
-      </div>
-    </div>
-  );
-};
-
-export default CounterWithHook;
-```
-
-### Exercise 8.2: useLocalStorage Hook with TypeScript
-
-```tsx
-// src/hooks/useLocalStorage.ts
-import { useState, useEffect } from "react";
-
-function useLocalStorage<T>(
-  key: string,
-  initialValue: T
-): [T, (value: T | ((val: T) => T)) => void] {
-  // Get value from localStorage or use initial value
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error(`Error reading localStorage key "${key}":`, error);
-      return initialValue;
-    }
-  });
-
-  // Return wrapped version of useState's setter function
-  const setValue = (value: T | ((val: T) => T)): void => {
-    try {
-      // Allow value to be a function like useState
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.error(`Error setting localStorage key "${key}":`, error);
-    }
-  };
-
-  return [storedValue, setValue];
-}
-
-export default useLocalStorage;
-```
-
-```tsx
-// src/SettingsComponent.tsx
-import React from "react";
-import useLocalStorage from "./hooks/useLocalStorage";
-
-type Theme = "light" | "dark";
-
-interface ThemeStyles {
-  backgroundColor: string;
-  color: string;
-}
-
-const SettingsComponent: React.FC = () => {
-  const [theme, setTheme] = useLocalStorage<Theme>("theme", "light");
-  const [username, setUsername] = useLocalStorage<string>("username", "");
-  const [notifications, setNotifications] = useLocalStorage<boolean>(
-    "notifications",
-    true
-  );
-
-  const themes: Record<Theme, ThemeStyles> = {
-    light: { backgroundColor: "#ffffff", color: "#000000" },
-    dark: { backgroundColor: "#333333", color: "#ffffff" },
-  };
-
-  const handleUsernameChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+  const handleButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement>
   ): void => {
-    setUsername(e.target.value);
-  };
-
-  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    setTheme(e.target.value as Theme);
-  };
-
-  const handleNotificationChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setNotifications(e.target.checked);
+    console.log("Button clicked!", event.currentTarget);
   };
 
   return (
-    <div
-      style={{
-        ...themes[theme],
-        padding: "20px",
-        minHeight: "400px",
-        transition: "all 0.3s ease",
-      }}
-    >
-      <h2>Settings (Persisted in LocalStorage)</h2>
-
-      <div style={{ marginBottom: "20px" }}>
-        <label style={{ display: "block", marginBottom: "5px" }}>
-          Username:
-        </label>
-        <input
-          type="text"
-          value={username}
-          onChange={handleUsernameChange}
-          placeholder="Enter your username"
-          style={{ padding: "8px", width: "200px" }}
-        />
-      </div>
-
-      <div style={{ marginBottom: "20px" }}>
-        <label style={{ display: "block", marginBottom: "5px" }}>Theme:</label>
-        <select
-          value={theme}
-          onChange={handleThemeChange}
-          style={{ padding: "8px" }}
-        >
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
-
-      <div style={{ marginBottom: "20px" }}>
-        <label style={{ display: "flex", alignItems: "center" }}>
-          <input
-            type="checkbox"
-            checked={notifications}
-            onChange={handleNotificationChange}
-            style={{ marginRight: "8px" }}
-          />
-          Enable notifications
-        </label>
-      </div>
-
-      <div
-        style={{
-          padding: "15px",
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-          backgroundColor: theme === "light" ? "#f8f9fa" : "#555555",
-        }}
-      >
-        <h3>Current Settings:</h3>
-        <p>Username: {username || "Not set"}</p>
-        <p>Theme: {theme}</p>
-        <p>Notifications: {notifications ? "Enabled" : "Disabled"}</p>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleInputChange}
+        placeholder="Name"
+      />
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleInputChange}
+        placeholder="Email"
+      />
+      <button type="submit">Submit</button>
+      <button type="button" onClick={handleButtonClick}>
+        Click Me
+      </button>
+    </form>
   );
 };
-
-export default SettingsComponent;
 ```
 
----
-
-## 10. Chapter 9: Building Real Projects
-
-### Project 1: Complete Calculator App with TypeScript
+#### 4. **Styling with Type Safety**
 
 ```tsx
-// src/Calculator.tsx
-import React, { useState } from "react";
-
-type Operation = "/" | "*" | "+" | "-" | "=";
-
-interface CalculatorState {
-  display: string;
-  previousValue: number | null;
-  operation: Operation | null;
-  waitingForOperand: boolean;
-  history: string[];
+interface StyledComponentProps {
+  variant: "primary" | "secondary" | "danger";
+  size: "small" | "medium" | "large";
+  children: React.ReactNode;
 }
 
-const Calculator: React.FC = () => {
-  const [display, setDisplay] = useState<string>("0");
-  const [previousValue, setPreviousValue] = useState<number | null>(null);
-  const [operation, setOperation] = useState<Operation | null>(null);
-  const [waitingForOperand, setWaitingForOperand] = useState<boolean>(false);
-  const [history, setHistory] = useState<string[]>([]);
-
-  const inputNumber = (num: number): void => {
-    if (waitingForOperand) {
-      setDisplay(String(num));
-      setWaitingForOperand(false);
-    } else {
-      setDisplay(display === "0" ? String(num) : display + num);
-    }
-  };
-
-  const inputDecimal = (): void => {
-    if (waitingForOperand) {
-      setDisplay("0.");
-      setWaitingForOperand(false);
-    } else if (display.indexOf(".") === -1) {
-      setDisplay(display + ".");
-    }
-  };
-
-  const clear = (): void => {
-    setDisplay("0");
-    setPreviousValue(null);
-    setOperation(null);
-    setWaitingForOperand(false);
-  };
-
-  const performCalculation: Record<
-    Operation,
-    (prevValue: number, nextValue: number) => number
-  > = {
-    "/": (prevValue, nextValue) => prevValue / nextValue,
-    "*": (prevValue, nextValue) => prevValue * nextValue,
-    "+": (prevValue, nextValue) => prevValue + nextValue,
-    "-": (prevValue, nextValue) => prevValue - nextValue,
-    "=": (prevValue, nextValue) => nextValue,
-  };
-
-  const calculate = (nextOperation: Operation): void => {
-    const inputValue: number = parseFloat(display);
-
-    if (previousValue === null) {
-      setPreviousValue(inputValue);
-    } else if (operation) {
-      const currentValue: number = previousValue || 0;
-      const newValue: number = performCalculation[operation](
-        currentValue,
-        inputValue
-      );
-
-      // Add to history
-      const calculation: string = `${currentValue} ${operation} ${inputValue} = ${newValue}`;
-      setHistory((prev) => [calculation, ...prev.slice(0, 9)]); // Keep last 10
-
-      setDisplay(String(newValue));
-      setPreviousValue(newValue);
-    }
-
-    setWaitingForOperand(true);
-    setOperation(nextOperation);
-  };
-
-  const buttonStyle = {
-    fontSize: "18px",
-    padding: "20px",
-    margin: "2px",
+const StyledButton: React.FC<StyledComponentProps> = ({
+  variant,
+  size,
+  children,
+}) => {
+  // Type-safe style objects
+  const baseStyles: React.CSSProperties = {
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
-    minWidth: "60px",
-    minHeight: "60px",
+    fontWeight: "bold",
+    transition: "all 0.2s ease",
   };
 
-  const numberButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: "#f8f9fa",
-    border: "1px solid #dee2e6",
+  const variantStyles: Record<
+    StyledComponentProps["variant"],
+    React.CSSProperties
+  > = {
+    primary: {
+      backgroundColor: "#007bff",
+      color: "white",
+    },
+    secondary: {
+      backgroundColor: "#6c757d",
+      color: "white",
+    },
+    danger: {
+      backgroundColor: "#dc3545",
+      color: "white",
+    },
   };
 
-  const operatorButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: "#007bff",
-    color: "white",
+  const sizeStyles: Record<StyledComponentProps["size"], React.CSSProperties> =
+    {
+      small: {
+        padding: "4px 8px",
+        fontSize: "12px",
+      },
+      medium: {
+        padding: "8px 16px",
+        fontSize: "14px",
+      },
+      large: {
+        padding: "12px 24px",
+        fontSize: "16px",
+      },
+    };
+
+  // Combine styles with type safety
+  const combinedStyles: React.CSSProperties = {
+    ...baseStyles,
+    ...variantStyles[variant],
+    ...sizeStyles[size],
   };
 
-  const specialButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: "#6c757d",
-    color: "white",
+  return <button style={combinedStyles}>{children}</button>;
+};
+```
+
+### TSX Best Practices
+
+#### 1. **Component Composition**
+
+```tsx
+// ✅ Good - Composable components
+interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Card: React.FC<CardProps> = ({ children, className = "" }) => (
+  <div className={`card ${className}`}>{children}</div>
+);
+
+const CardHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div className="card-header">{children}</div>
+);
+
+const CardBody: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div className="card-body">{children}</div>
+);
+
+// Usage
+const UserProfile: React.FC = () => (
+  <Card>
+    <CardHeader>
+      <h2>User Profile</h2>
+    </CardHeader>
+    <CardBody>
+      <p>User details go here...</p>
+    </CardBody>
+  </Card>
+);
+```
+
+#### 2. **Avoid Inline Functions in TSX**
+
+```tsx
+interface ItemListProps {
+  items: string[];
+  onItemClick: (item: string) => void;
+}
+
+// ❌ Avoid - Creates new function on every render
+const BadItemList: React.FC<ItemListProps> = ({ items, onItemClick }) => (
+  <ul>
+    {items.map((item) => (
+      <li key={item} onClick={() => onItemClick(item)}>
+        {item}
+      </li>
+    ))}
+  </ul>
+);
+
+// ✅ Good - Function defined outside render
+const GoodItemList: React.FC<ItemListProps> = ({ items, onItemClick }) => {
+  const handleItemClick = (item: string) => () => {
+    onItemClick(item);
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "0 auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        backgroundColor: "#f8f9fa",
-      }}
-    >
-      <h2 style={{ textAlign: "center" }}>Calculator</h2>
-
-      {/* Display */}
-      <div
-        style={{
-          backgroundColor: "#000",
-          color: "#00ff00",
-          padding: "20px",
-          marginBottom: "20px",
-          borderRadius: "4px",
-          fontSize: "24px",
-          textAlign: "right",
-          fontFamily: "monospace",
-          minHeight: "30px",
-          wordBreak: "break-all",
-        }}
-      >
-        {display}
-      </div>
-
-      {/* Button Grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "2px",
-        }}
-      >
-        <button style={specialButtonStyle} onClick={clear}>
-          C
-        </button>
-        <button
-          style={specialButtonStyle}
-          onClick={() => setDisplay(display.slice(0, -1) || "0")}
-        >
-          ⌫
-        </button>
-        <button style={operatorButtonStyle} onClick={() => calculate("/")}>
-          /
-        </button>
-        <button style={operatorButtonStyle} onClick={() => calculate("*")}>
-          ×
-        </button>
-
-        <button style={numberButtonStyle} onClick={() => inputNumber(7)}>
-          7
-        </button>
-        <button style={numberButtonStyle} onClick={() => inputNumber(8)}>
-          8
-        </button>
-        <button style={numberButtonStyle} onClick={() => inputNumber(9)}>
-          9
-        </button>
-        <button style={operatorButtonStyle} onClick={() => calculate("-")}>
-          -
-        </button>
-
-        <button style={numberButtonStyle} onClick={() => inputNumber(4)}>
-          4
-        </button>
-        <button style={numberButtonStyle} onClick={() => inputNumber(5)}>
-          5
-        </button>
-        <button style={numberButtonStyle} onClick={() => inputNumber(6)}>
-          6
-        </button>
-        <button style={operatorButtonStyle} onClick={() => calculate("+")}>
-          +
-        </button>
-
-        <button style={numberButtonStyle} onClick={() => inputNumber(1)}>
-          1
-        </button>
-        <button style={numberButtonStyle} onClick={() => inputNumber(2)}>
-          2
-        </button>
-        <button style={numberButtonStyle} onClick={() => inputNumber(3)}>
-          3
-        </button>
-        <button
-          style={{ ...operatorButtonStyle, gridRow: "span 2" }}
-          onClick={() => calculate("=")}
-        >
-          =
-        </button>
-
-        <button
-          style={{ ...numberButtonStyle, gridColumn: "span 2" }}
-          onClick={() => inputNumber(0)}
-        >
-          0
-        </button>
-        <button style={numberButtonStyle} onClick={inputDecimal}>
-          .
-        </button>
-      </div>
-
-      {/* History */}
-      {history.length > 0 && (
-        <div style={{ marginTop: "20px" }}>
-          <h3>History:</h3>
-          <div
-            style={{
-              maxHeight: "150px",
-              overflowY: "auto",
-              backgroundColor: "white",
-              padding: "10px",
-              borderRadius: "4px",
-              border: "1px solid #dee2e6",
-            }}
-          >
-            {history.map((calc, index) => (
-              <div
-                key={index}
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "monospace",
-                  padding: "2px 0",
-                  borderBottom:
-                    index < history.length - 1 ? "1px solid #eee" : "none",
-                }}
-              >
-                {calc}
-              </div>
-            ))}
-          </div>
-          <button
-            onClick={() => setHistory([])}
-            style={{
-              marginTop: "10px",
-              padding: "5px 15px",
-              backgroundColor: "#dc3545",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            Clear History
-          </button>
-        </div>
-      )}
-    </div>
+    <ul>
+      {items.map((item) => (
+        <li key={item} onClick={handleItemClick(item)}>
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 };
-
-export default Calculator;
 ```
 
----
-
-## 🎯 Final Challenge: Personal Dashboard
-
-Create a personal dashboard that combines all the concepts you've learned:
-
-**Requirements:**
-
-1. **Weather Widget** - Show current weather (use mock data)
-2. **Todo List** - Add, edit, delete, and mark todos as complete
-3. **Notes Section** - Create and save notes
-4. **Settings Panel** - Theme switcher, user preferences
-5. **Calculator** - Embed the calculator you built
-6. **Timer/Stopwatch** - Time management tools
-
-**Technical Requirements:**
-
-- Use custom hooks for shared logic
-- Implement local storage for persistence
-- Use conditional rendering for different views
-- Handle all user interactions with proper state management
-- Include loading states and error handling
-- Make it responsive and well-styled
-
-**Bonus Features:**
-
-- Export data functionality
-- Keyboard shortcuts
-- Dark/light theme toggle
-- Data visualization (charts for todos, time tracking)
-
----
-
-## 🎓 Congratulations!
-
-You've completed the comprehensive offline React tutorial! You now have solid foundation in:
-
-- ✅ React components and JSX
-- ✅ Props and component communication
-- ✅ State management with hooks
-- ✅ Event handling and user interactions
-- ✅ Lists and conditional rendering
-- ✅ Forms and controlled components
-- ✅ useEffect and side effects
-- ✅ Custom hooks for reusable logic
-- ✅ Building complete applications
-
-### Next Steps:
-
-1. **Practice** - Build more projects using these concepts
-2. **Explore** - Learn about React Router, Context API, Redux
-3. **Advanced Topics** - Performance optimization, testing, TypeScript
-4. **Real APIs** - Integrate with actual backend services
-5. **Deployment** - Learn to deploy your React apps
-
-**Keep coding and building amazing things with React! 🚀**
-
----
-
-## 📚 TypeScript Glossary for React Developers
-
-### Basic Types
+#### 3. **Use TypeScript to Catch TSX Errors**
 
 ```tsx
-// Primitive types
-const str: string = "hello";
-const num: number = 42;
-const bool: boolean = true;
-const undef: undefined = undefined;
-const nul: null = null;
+// TypeScript will catch these errors at compile time
+interface ButtonProps {
+  onClick: () => void;
+  disabled?: boolean;
+  children: React.ReactNode;
+}
 
-// Array types
-const numbers: number[] = [1, 2, 3];
-const strings: Array<string> = ["a", "b", "c"];
-
-// Object types
-const obj: { name: string; age: number } = { name: "John", age: 25 };
-```
-
-### React-Specific Types
-
-```tsx
-// Component types
-const MyComponent: React.FC = () => <div>Hello</div>;
-const MyComponentWithProps: React.FC<{ name: string }> = ({ name }) => (
-  <div>Hello {name}</div>
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  disabled = false,
+  children,
+}) => (
+  <button onClick={onClick} disabled={disabled}>
+    {children}
+  </button>
 );
 
-// Event types
-const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {};
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {};
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {};
+// ❌ TypeScript error - missing required prop
+// <Button>Click me</Button>
 
-// State types
-const [count, setCount] = useState<number>(0);
-const [user, setUser] = useState<User | null>(null);
-const [items, setItems] = useState<string[]>([]);
+// ❌ TypeScript error - wrong prop type
+// <Button onClick="not a function">Click me</Button>
+
+// ✅ Correct usage
+<Button onClick={() => console.log("clicked")}>Click me</Button>;
 ```
 
-### Advanced TypeScript Patterns
+### Practice Exercise: Building a Complete Component
+
+Create a `NotificationCard` component with the following requirements:
 
 ```tsx
-// Generic types
-interface ApiResponse<T> {
-  data: T;
-  status: number;
+// src/components/NotificationCard.tsx
+import React from "react";
+
+interface Notification {
+  id: string;
+  type: "info" | "success" | "warning" | "error";
+  title: string;
   message: string;
+  timestamp: Date;
+  isRead: boolean;
 }
 
-// Union types
-type Status = "idle" | "loading" | "success" | "error";
-type ButtonSize = "small" | "medium" | "large";
-
-// Intersection types
-interface User {
-  name: string;
-  age: number;
+interface NotificationCardProps {
+  notification: Notification;
+  onMarkAsRead: (id: string) => void;
+  onDismiss: (id: string) => void;
+  showTimestamp?: boolean;
 }
-interface Admin {
-  permissions: string[];
-}
-type AdminUser = User & Admin;
 
-// Utility types
-type PartialUser = Partial<User>; // All properties optional
-type RequiredUser = Required<User>; // All properties required
-type PickUser = Pick<User, "name" | "age">; // Pick specific properties
-type OmitUser = Omit<User, "age">; // Exclude specific properties
+const NotificationCard: React.FC<NotificationCardProps> = ({
+  notification,
+  onMarkAsRead,
+  onDismiss,
+  showTimestamp = true,
+}) => {
+  // Implement the component with:
+  // - Type-safe styling based on notification type
+  // - Conditional rendering for read/unread state
+  // - Proper event handling
+  // - Timestamp formatting
+  // - Accessibility features
+};
+
+export default NotificationCard;
 ```
 
-### Common React + TypeScript Patterns
+**Implementation hints:**
+
+- Use Record types for type-based styling
+- Implement proper ARIA attributes for accessibility
+- Use conditional rendering for different states
+- Format timestamps with proper TypeScript typing
+
+This comprehensive coverage of TSX will prepare you for real-world React development with TypeScript!
+
+---
+
+## 5. Props & Component Communication
+
+### Understanding Props in TypeScript
+
+Props (properties) are how React components communicate with each other. In TypeScript, we define exact shapes for props to ensure type safety and better developer experience.
+
+### Defining Prop Types with Interfaces
 
 ```tsx
-// Props interface
+// Basic prop interface
 interface ButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
-  variant?: "primary" | "secondary";
-  disabled?: boolean;
+  text: string;
+  onClick: () => void;
+  disabled?: boolean; // Optional prop
+  variant?: "primary" | "secondary"; // Union type
 }
 
-// Component with props
 const Button: React.FC<ButtonProps> = ({
-  children,
+  text,
   onClick,
-  variant = "primary",
   disabled = false,
+  variant = "primary",
 }) => {
   return (
     <button
@@ -2690,75 +1729,738 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={`btn btn-${variant}`}
     >
-      {children}
+      {text}
     </button>
   );
 };
+```
 
-// Custom hook with types
-const useCounter = (initialValue: number = 0) => {
-  const [count, setCount] = useState<number>(initialValue);
+### Advanced Prop Patterns
 
-  const increment = (): void => setCount((prev) => prev + 1);
-  const decrement = (): void => setCount((prev) => prev - 1);
-  const reset = (): void => setCount(initialValue);
+#### 1. **Children Props**
 
-  return { count, increment, decrement, reset };
+```tsx
+interface CardProps {
+  title: string;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+}
+
+const Card: React.FC<CardProps> = ({ title, children, footer }) => (
+  <div className="card">
+    <div className="card-header">
+      <h3>{title}</h3>
+    </div>
+    <div className="card-body">{children}</div>
+    {footer && <div className="card-footer">{footer}</div>}
+  </div>
+);
+
+// Usage
+<Card title="User Profile" footer={<button>Save Changes</button>}>
+  <p>User details go here</p>
+  <input type="text" placeholder="Name" />
+</Card>;
+```
+
+#### 2. **Function Props (Callbacks)**
+
+```tsx
+interface UserFormProps {
+  initialUser?: User;
+  onSubmit: (user: User) => Promise<void>;
+  onCancel: () => void;
+  onValidationError: (errors: string[]) => void;
+}
+
+const UserForm: React.FC<UserFormProps> = ({
+  initialUser,
+  onSubmit,
+  onCancel,
+  onValidationError,
+}) => {
+  // Component implementation
 };
 ```
 
-### TypeScript Configuration Tips
-
-```json
-// tsconfig.json - Key settings for React
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "es6"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true, // Enables all strict type checking options
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx" // Enables JSX in .tsx files
-  },
-  "include": ["src"]
-}
-```
-
-### Common TypeScript Errors and Solutions
+#### 3. **Generic Props**
 
 ```tsx
-// ❌ Error: Object is possibly 'undefined'
-const user: User | undefined = getUser();
-console.log(user.name); // Error!
-
-// ✅ Solution: Optional chaining
-console.log(user?.name);
-
-// ✅ Solution: Type guard
-if (user) {
-  console.log(user.name);
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
+  keyExtractor: (item: T) => string | number;
+  emptyMessage?: string;
 }
 
-// ❌ Error: Type 'string' is not assignable to type 'number'
-const [count, setCount] = useState<number>(0);
-setCount("1"); // Error!
+function List<T>({ items, renderItem, keyExtractor, emptyMessage }: ListProps<T>) {
+  if (items.length === 0) {
+    return <div>{emptyMessage || 'No items to display'}</div>;
+  }
 
-// ✅ Solution: Proper type conversion
-setCount(parseInt("1") || 0);
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={keyExtractor(item)}>
+          {renderItem(item, index)}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
-// ❌ Error: Property 'onClick' does not exist on type 'HTMLDivElement'
-<div onClick={handleClick}>Click me</div> // Error!
+// Usage with different types
+const users: User[] = [/* user data */];
+const products: Product[] = [/* product data */];
 
-// ✅ Solution: Use button or add proper event handling
-<button onClick={handleClick}>Click me</button>
+<List
+  items={users}
+  renderItem={(user) => <span>{user.name}</span>}
+  keyExtractor={(user) => user.id}
+/>
+
+<List
+  items={products}
+  renderItem={(product) => <div>{product.name} - ${product.price}</div>}
+  keyExtractor={(product) => product.id}
+/>
 ```
 
-This glossary covers the essential TypeScript concepts you'll use in React development. Refer back to it as you build more complex applications!
+### Component Communication Patterns
+
+#### 1. **Parent to Child Communication**
+
+```tsx
+// Parent Component
+const UserDashboard: React.FC = () => {
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
+
+  return (
+    <div>
+      <UserList
+        users={users}
+        onUserSelect={setSelectedUser}
+        selectedUserId={selectedUser?.id}
+      />
+
+      {selectedUser && (
+        <UserDetails
+          user={selectedUser}
+          onUpdate={(updatedUser) => {
+            setUsers((prev) =>
+              prev.map((u) => (u.id === updatedUser.id ? updatedUser : u))
+            );
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
+// Child Components
+interface UserListProps {
+  users: User[];
+  onUserSelect: (user: User) => void;
+  selectedUserId?: number;
+}
+
+const UserList: React.FC<UserListProps> = ({
+  users,
+  onUserSelect,
+  selectedUserId,
+}) => (
+  <ul>
+    {users.map((user) => (
+      <li
+        key={user.id}
+        onClick={() => onUserSelect(user)}
+        className={user.id === selectedUserId ? "selected" : ""}
+      >
+        {user.name}
+      </li>
+    ))}
+  </ul>
+);
+```
+
+#### 2. **Prop Drilling Solutions**
+
+```tsx
+// Instead of prop drilling, use context for deeply nested data
+interface AppContextType {
+  currentUser: User | null;
+  theme: "light" | "dark";
+  setTheme: (theme: "light" | "dark") => void;
+}
+
+const AppContext = React.createContext<AppContextType | undefined>(undefined);
+
+// Custom hook for context
+const useAppContext = (): AppContextType => {
+  const context = React.useContext(AppContext);
+  if (!context) {
+    throw new Error("useAppContext must be used within AppContextProvider");
+  }
+  return context;
+};
+
+// Deep component can access context directly
+const DeepNestedComponent: React.FC = () => {
+  const { currentUser, theme } = useAppContext();
+
+  return (
+    <div className={`component theme-${theme}`}>
+      Welcome, {currentUser?.name}!
+    </div>
+  );
+};
+```
+
+---
+
+## 6. State Management with useState
+
+### Understanding State in React + TypeScript
+
+State represents data that can change over time. TypeScript helps us define exactly what types of data our state can hold.
+
+### Basic useState with TypeScript
+
+```tsx
+import React, { useState } from "react";
+
+const Counter: React.FC = () => {
+  // TypeScript infers the type as number
+  const [count, setCount] = useState(0);
+
+  // Explicit typing when needed
+  const [message, setMessage] = useState<string>("");
+
+  // For complex types
+  const [user, setUser] = useState<User | null>(null);
+
+  // For arrays
+  const [items, setItems] = useState<string[]>([]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount((prev) => prev - 1)}>Decrement</button>
+    </div>
+  );
+};
+```
+
+### Complex State Management
+
+#### 1. **Object State with TypeScript**
+
+```tsx
+interface FormState {
+  name: string;
+  email: string;
+  age: number;
+  preferences: {
+    newsletter: boolean;
+    notifications: boolean;
+  };
+}
+
+const UserProfileForm: React.FC = () => {
+  const [formState, setFormState] = useState<FormState>({
+    name: "",
+    email: "",
+    age: 0,
+    preferences: {
+      newsletter: false,
+      notifications: true,
+    },
+  });
+
+  // Type-safe state updates
+  const updateField = (
+    field: keyof FormState,
+    value: FormState[keyof FormState]
+  ): void => {
+    setFormState((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const updatePreference = (
+    pref: keyof FormState["preferences"],
+    value: boolean
+  ): void => {
+    setFormState((prev) => ({
+      ...prev,
+      preferences: {
+        ...prev.preferences,
+        [pref]: value,
+      },
+    }));
+  };
+
+  return (
+    <form>
+      <input
+        type="text"
+        value={formState.name}
+        onChange={(e) => updateField("name", e.target.value)}
+        placeholder="Name"
+      />
+
+      <input
+        type="email"
+        value={formState.email}
+        onChange={(e) => updateField("email", e.target.value)}
+        placeholder="Email"
+      />
+
+      <input
+        type="number"
+        value={formState.age}
+        onChange={(e) => updateField("age", parseInt(e.target.value) || 0)}
+        placeholder="Age"
+      />
+
+      <label>
+        <input
+          type="checkbox"
+          checked={formState.preferences.newsletter}
+          onChange={(e) => updatePreference("newsletter", e.target.checked)}
+        />
+        Subscribe to newsletter
+      </label>
+    </form>
+  );
+};
+```
+
+#### 2. **Array State Management**
+
+```tsx
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+  createdAt: Date;
+}
+
+const TodoApp: React.FC = () => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [nextId, setNextId] = useState(1);
+
+  const addTodo = (text: string): void => {
+    const newTodo: Todo = {
+      id: nextId,
+      text,
+      completed: false,
+      createdAt: new Date(),
+    };
+
+    setTodos((prev) => [...prev, newTodo]);
+    setNextId((prev) => prev + 1);
+  };
+
+  const toggleTodo = (id: number): void => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const deleteTodo = (id: number): void => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  const updateTodo = (id: number, newText: string): void => {
+    setTodos((prev) =>
+      prev.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
+    );
+  };
+
+  return (
+    <div>
+      <TodoForm onSubmit={addTodo} />
+      <TodoList
+        todos={todos}
+        onToggle={toggleTodo}
+        onDelete={deleteTodo}
+        onUpdate={updateTodo}
+      />
+    </div>
+  );
+};
+```
+
+### State Best Practices
+
+#### 1. **Derived State**
+
+```tsx
+const ShoppingCart: React.FC = () => {
+  const [items, setItems] = useState<CartItem[]>([]);
+
+  // Derived state - don't store in useState
+  const totalPrice = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const isEmpty = items.length === 0;
+
+  return (
+    <div>
+      <h2>Shopping Cart ({itemCount} items)</h2>
+      <p>Total: ${totalPrice.toFixed(2)}</p>
+      {isEmpty ? <p>Your cart is empty</p> : <CartItemList items={items} />}
+    </div>
+  );
+};
+```
+
+#### 2. **State Normalization**
+
+```tsx
+// Instead of nested objects, normalize data
+interface AppState {
+  users: Record<number, User>;
+  posts: Record<number, Post>;
+  comments: Record<number, Comment>;
+}
+
+const useNormalizedData = () => {
+  const [state, setState] = useState<AppState>({
+    users: {},
+    posts: {},
+    comments: {},
+  });
+
+  const addUser = (user: User): void => {
+    setState((prev) => ({
+      ...prev,
+      users: {
+        ...prev.users,
+        [user.id]: user,
+      },
+    }));
+  };
+
+  const getUser = (id: number): User | undefined => state.users[id];
+
+  return { state, addUser, getUser };
+};
+```
+
+---
+
+## 7. Event Handling & Form Management
+
+### TypeScript Event Handling
+
+React events are synthetic events with specific TypeScript types for different elements.
+
+#### Common Event Types
+
+```tsx
+const EventExamples: React.FC = () => {
+  // Input events
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    console.log(event.target.value);
+  };
+
+  const handleTextareaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
+    console.log(event.target.value);
+  };
+
+  const handleSelectChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    console.log(event.target.value);
+  };
+
+  // Mouse events
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    console.log("Button clicked", event.currentTarget);
+  };
+
+  const handleDivClick = (event: React.MouseEvent<HTMLDivElement>): void => {
+    console.log("Div clicked", event.clientX, event.clientY);
+  };
+
+  // Keyboard events
+  const handleKeyPress = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ): void => {
+    if (event.key === "Enter") {
+      console.log("Enter pressed");
+    }
+  };
+
+  // Form events
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    console.log("Form submitted");
+  };
+
+  return (
+    <div>
+      <input onChange={handleInputChange} onKeyPress={handleKeyPress} />
+      <textarea onChange={handleTextareaChange} />
+      <select onChange={handleSelectChange}>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+      </select>
+      <button onClick={handleClick}>Click me</button>
+      <div onClick={handleDivClick}>Click this div</div>
+      <form onSubmit={handleSubmit}>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+```
+
+### Enterprise Form Management
+
+#### 1. **Controlled Components with Validation**
+
+```tsx
+interface FormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  agreeToTerms: boolean;
+}
+
+interface FormErrors {
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  agreeToTerms?: string;
+}
+
+const RegistrationForm: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    agreeToTerms: false,
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Validation functions
+  const validateEmail = (email: string): string | undefined => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) return "Email is required";
+    if (!emailRegex.test(email)) return "Invalid email format";
+    return undefined;
+  };
+
+  const validatePassword = (password: string): string | undefined => {
+    if (!password) return "Password is required";
+    if (password.length < 8) return "Password must be at least 8 characters";
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
+      return "Password must contain lowercase, uppercase, and number";
+    }
+    return undefined;
+  };
+
+  const validateConfirmPassword = (
+    confirmPassword: string,
+    password: string
+  ): string | undefined => {
+    if (!confirmPassword) return "Please confirm your password";
+    if (confirmPassword !== password) return "Passwords do not match";
+    return undefined;
+  };
+
+  // Handle input changes
+  const handleInputChange =
+    (field: keyof FormData) =>
+    (event: React.ChangeEvent<HTMLInputElement>): void => {
+      const value =
+        event.target.type === "checkbox"
+          ? event.target.checked
+          : event.target.value;
+
+      setFormData((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
+
+      // Clear error when user starts typing
+      if (errors[field]) {
+        setErrors((prev) => ({
+          ...prev,
+          [field]: undefined,
+        }));
+      }
+    };
+
+  // Validate all fields
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    newErrors.email = validateEmail(formData.email);
+    newErrors.password = validatePassword(formData.password);
+    newErrors.confirmPassword = validateConfirmPassword(
+      formData.confirmPassword,
+      formData.password
+    );
+
+    if (!formData.agreeToTerms) {
+      newErrors.agreeToTerms = "You must agree to the terms";
+    }
+
+    setErrors(newErrors);
+    return Object.values(newErrors).every((error) => !error);
+  };
+
+  // Handle form submission
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      console.log("User registered:", formData);
+      alert("Registration successful!");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      alert("Registration failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      style={{ maxWidth: "400px", margin: "0 auto" }}
+    >
+      <h2>Create Account</h2>
+
+      <div style={{ marginBottom: "16px" }}>
+        <label>
+          Email:
+          <input
+            type="email"
+            value={formData.email}
+            onChange={handleInputChange("email")}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: errors.email ? "2px solid red" : "1px solid #ccc",
+              borderRadius: "4px",
+            }}
+          />
+          {errors.email && (
+            <span style={{ color: "red", fontSize: "12px" }}>
+              {errors.email}
+            </span>
+          )}
+        </label>
+      </div>
+
+      <div style={{ marginBottom: "16px" }}>
+        <label>
+          Password:
+          <input
+            type="password"
+            value={formData.password}
+            onChange={handleInputChange("password")}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: errors.password ? "2px solid red" : "1px solid #ccc",
+              borderRadius: "4px",
+            }}
+          />
+          {errors.password && (
+            <span style={{ color: "red", fontSize: "12px" }}>
+              {errors.password}
+            </span>
+          )}
+        </label>
+      </div>
+
+      <div style={{ marginBottom: "16px" }}>
+        <label>
+          Confirm Password:
+          <input
+            type="password"
+            value={formData.confirmPassword}
+            onChange={handleInputChange("confirmPassword")}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: errors.confirmPassword
+                ? "2px solid red"
+                : "1px solid #ccc",
+              borderRadius: "4px",
+            }}
+          />
+          {errors.confirmPassword && (
+            <span style={{ color: "red", fontSize: "12px" }}>
+              {errors.confirmPassword}
+            </span>
+          )}
+        </label>
+      </div>
+
+      <div style={{ marginBottom: "16px" }}>
+        <label>
+          <input
+            type="checkbox"
+            checked={formData.agreeToTerms}
+            onChange={handleInputChange("agreeToTerms")}
+          />
+          I agree to the terms and conditions
+          {errors.agreeToTerms && (
+            <span style={{ color: "red", fontSize: "12px", display: "block" }}>
+              {errors.agreeToTerms}
+            </span>
+          )}
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        style={{
+          width: "100%",
+          padding: "12px",
+          backgroundColor: isSubmitting ? "#ccc" : "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: isSubmitting ? "not-allowed" : "pointer",
+        }}
+      >
+        {isSubmitting ? "Creating Account..." : "Create Account"}
+      </button>
+    </form>
+  );
+};
+```
+
+This section covers the essential React concepts with TypeScript that are crucial for enterprise development. The examples show real-world patterns you'll use in professional applications, with proper type safety and best practices.

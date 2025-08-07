@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SWE/Technologies/React/Complete_Offline_React_Tutorial.md",
+                "file": "SWE/Technologies/React/My ass needs to learn react.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Complete_Offline_React_Tutorial"
+              "title": "My ass needs to learn react"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "a4080bb2eb08c97e",
@@ -183,9 +182,6 @@
   },
   "active": "b423ca5b3dcdba34",
   "lastOpenFiles": [
-    "SWE/Technologies/React/My ass needs to learn react.md",
-    "SWE/Technologies/React/Complete_Offline_React_Tutorial.md",
-    "SWE/Technologies/React/React_Quick_Reference_Offline.md",
     "SWE/Technologies/React/Offline_React_Learning_Plan.md",
     "SWE/Technologies/React/Day_7_Capstone_Best_Practices.md",
     "SWE/Technologies/React/Day_6_Testing_Modern_Patterns.md",
@@ -194,6 +190,11 @@
     "SWE/Technologies/React/Day_3_Advanced_Hooks_Patterns.md",
     "SWE/Technologies/React/Day_2_State_Event_Handling.md",
     "SWE/Technologies/React/Day_1_React_Fundamentals.md",
+    "SWE/Technologies/React/Complete_Offline_React_Tutorial_New.md",
+    "SWE/Technologies/React/Complete_Offline_React_Tutorial.md",
+    "SWE/Technologies/React/Complete_Offline_React_Tutorial_Old.md",
+    "SWE/Technologies/React/My ass needs to learn react.md",
+    "SWE/Technologies/React/React_Quick_Reference_Offline.md",
     "SWE/Technologies/React/Project_Templates_And_Challenges.md",
     "SWE/Technologies/React/React_7_Day_Roadmap.md",
     "SWE/Best Practice Template.md",
@@ -208,13 +209,11 @@
     "SWE/Technologies/React/React Learning Path.md",
     "SWE/Technologies/React/React Hooks Reference.md",
     "LeetCode/Leetcode Tracking.md",
-    "SWE/Interview Prep Checklist.md",
     "SWE/Best Practices",
     "SWE/Projects",
     "SWE/Technologies",
     "SWE/System Design",
     "SWE/Design Patterns",
-    "SWE/System Design Template.md",
     "LeetCode/Two Pointers",
     "LeetCode/Tree",
     "LeetCode/Stack",

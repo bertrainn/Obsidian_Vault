@@ -3,6 +3,7 @@
 ## 🚀 Essential React Patterns
 
 ### Component Creation
+
 ```javascript
 // Functional Component
 function MyComponent({ name, age }) {
@@ -26,19 +27,18 @@ const MyComponent = ({ name, age }) => {
 ```
 
 ### State Management
+
 ```javascript
-import { useState } from 'react';
+import { useState } from "react";
 
 function Counter() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <div>
       <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>
-        Increment
-      </button>
-      <button onClick={() => setCount(prev => prev + 1)}>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount((prev) => prev + 1)}>
         Increment (safer)
       </button>
     </div>
@@ -47,18 +47,19 @@ function Counter() {
 ```
 
 ### Event Handling
+
 ```javascript
 function FormComponent() {
-  const [input, setInput] = useState('');
-  
+  const [input, setInput] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted:', input);
+    console.log("Submitted:", input);
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
-      <input 
+      <input
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Type something..."
@@ -70,38 +71,40 @@ function FormComponent() {
 ```
 
 ### useEffect Hook
+
 ```javascript
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function DataComponent() {
   const [data, setData] = useState(null);
-  
+
   // Component mount
   useEffect(() => {
-    console.log('Component mounted');
+    console.log("Component mounted");
   }, []);
-  
+
   // When data changes
   useEffect(() => {
     if (data) {
-      console.log('Data updated:', data);
+      console.log("Data updated:", data);
     }
   }, [data]);
-  
+
   // Cleanup
   useEffect(() => {
     const timer = setInterval(() => {
-      console.log('Timer tick');
+      console.log("Timer tick");
     }, 1000);
-    
+
     return () => clearInterval(timer);
   }, []);
-  
-  return <div>{data || 'Loading...'}</div>;
+
+  return <div>{data || "Loading..."}</div>;
 }
 ```
 
 ### Conditional Rendering
+
 ```javascript
 function ConditionalComponent({ isLoggedIn, user }) {
   // If-else
@@ -110,18 +113,14 @@ function ConditionalComponent({ isLoggedIn, user }) {
   } else {
     return <h1>Please log in</h1>;
   }
-  
+
   // Ternary operator
   return (
     <div>
-      {isLoggedIn ? (
-        <h1>Welcome, {user.name}!</h1>
-      ) : (
-        <h1>Please log in</h1>
-      )}
+      {isLoggedIn ? <h1>Welcome, {user.name}!</h1> : <h1>Please log in</h1>}
     </div>
   );
-  
+
   // Logical AND
   return (
     <div>
@@ -133,17 +132,16 @@ function ConditionalComponent({ isLoggedIn, user }) {
 ```
 
 ### List Rendering
+
 ```javascript
 function TodoList({ todos }) {
   return (
     <ul>
-      {todos.map(todo => (
+      {todos.map((todo) => (
         <li key={todo.id}>
-          <span className={todo.completed ? 'completed' : ''}>
-            {todo.text}
-          </span>
+          <span className={todo.completed ? "completed" : ""}>{todo.text}</span>
           <button onClick={() => toggleTodo(todo.id)}>
-            {todo.completed ? 'Undo' : 'Complete'}
+            {todo.completed ? "Undo" : "Complete"}
           </button>
         </li>
       ))}
@@ -157,6 +155,7 @@ function TodoList({ todos }) {
 ## 🛠️ Quick Setup Commands
 
 ### Create New React App
+
 ```bash
 # Create React App
 npx create-react-app my-app
@@ -171,6 +170,7 @@ npm run dev
 ```
 
 ### Useful npm Commands
+
 ```bash
 # Install dependencies
 npm install
@@ -195,39 +195,40 @@ npm install styled-components
 ## 📝 Common Patterns for Practice
 
 ### Simple Calculator
+
 ```javascript
 function Calculator() {
-  const [display, setDisplay] = useState('0');
+  const [display, setDisplay] = useState("0");
   const [operation, setOperation] = useState(null);
   const [waitingForOperand, setWaitingForOperand] = useState(false);
   const [value, setValue] = useState(null);
-  
+
   const inputNumber = (num) => {
     if (waitingForOperand) {
       setDisplay(String(num));
       setWaitingForOperand(false);
     } else {
-      setDisplay(display === '0' ? String(num) : display + num);
+      setDisplay(display === "0" ? String(num) : display + num);
     }
   };
-  
+
   const inputOperation = (nextOperation) => {
     const inputValue = parseFloat(display);
-    
+
     if (value === null) {
       setValue(inputValue);
     } else if (operation) {
       const currentValue = value || 0;
       const newValue = calculate(currentValue, inputValue, operation);
-      
+
       setDisplay(String(newValue));
       setValue(newValue);
     }
-    
+
     setWaitingForOperand(true);
     setOperation(nextOperation);
   };
-  
+
   return (
     <div className="calculator">
       <div className="display">{display}</div>
@@ -238,32 +239,38 @@ function Calculator() {
 ```
 
 ### Todo App
+
 ```javascript
 function TodoApp() {
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
-  
+  const [newTodo, setNewTodo] = useState("");
+
   const addTodo = () => {
     if (newTodo.trim()) {
-      setTodos([...todos, {
-        id: Date.now(),
-        text: newTodo,
-        completed: false
-      }]);
-      setNewTodo('');
+      setTodos([
+        ...todos,
+        {
+          id: Date.now(),
+          text: newTodo,
+          completed: false,
+        },
+      ]);
+      setNewTodo("");
     }
   };
-  
+
   const toggleTodo = (id) => {
-    setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ));
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
   };
-  
+
   const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
-  
+
   return (
     <div>
       <input
@@ -272,12 +279,12 @@ function TodoApp() {
         placeholder="Add new todo..."
       />
       <button onClick={addTodo}>Add</button>
-      
+
       <ul>
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <li key={todo.id}>
-            <span 
-              className={todo.completed ? 'completed' : ''}
+            <span
+              className={todo.completed ? "completed" : ""}
               onClick={() => toggleTodo(todo.id)}
             >
               {todo.text}
@@ -296,18 +303,21 @@ function TodoApp() {
 ## 🎯 Coding Challenges for Flights
 
 ### Beginner Challenges (30 min each)
+
 1. **Counter with multiple buttons** (increment, decrement, reset, custom step)
 2. **Color picker** (RGB sliders, hex display, color preview)
 3. **Simple form** (validation, error messages, success state)
 4. **Image gallery** (next/prev buttons, image counter)
 
 ### Intermediate Challenges (1 hour each)
+
 1. **Weather dashboard** (mock data, multiple cities, unit conversion)
 2. **Shopping cart** (add/remove items, quantity, total calculation)
 3. **Task manager** (categories, filters, search, priority levels)
 4. **Memory card game** (card flipping, score tracking, timer)
 
 ### Advanced Challenges (2+ hours)
+
 1. **Mini social media feed** (posts, likes, comments, user profiles)
 2. **Dashboard with widgets** (drag & drop, customizable layout)
 3. **File manager UI** (folder navigation, file operations, search)
@@ -318,6 +328,7 @@ function TodoApp() {
 ## 🐛 Common Issues & Solutions
 
 ### State Update Issues
+
 ```javascript
 // ❌ Wrong - direct mutation
 const [items, setItems] = useState([]);
@@ -330,23 +341,25 @@ setItems([...items, newItem]);
 setCount(count + 1);
 
 // ✅ Correct - using function form
-setCount(prev => prev + 1);
+setCount((prev) => prev + 1);
 ```
 
 ### Key Prop Issues
+
 ```javascript
 // ❌ Wrong - using index as key
-{items.map((item, index) => (
-  <Item key={index} data={item} />
-))}
+{
+  items.map((item, index) => <Item key={index} data={item} />);
+}
 
 // ✅ Correct - using unique identifier
-{items.map(item => (
-  <Item key={item.id} data={item} />
-))}
+{
+  items.map((item) => <Item key={item.id} data={item} />);
+}
 ```
 
 ### Event Handler Issues
+
 ```javascript
 // ❌ Wrong - calling function immediately
 <button onClick={handleClick()}>Click me</button>
@@ -363,17 +376,20 @@ setCount(prev => prev + 1);
 ## 📚 Study Schedule for Different Flight Lengths
 
 ### 2-Hour Flight
+
 - **30 min:** Review fundamentals
 - **60 min:** Build simple calculator
 - **30 min:** Practice component patterns
 
 ### 4-Hour Flight
+
 - **45 min:** React concepts review
 - **90 min:** Build todo application
 - **60 min:** Add advanced features
 - **45 min:** Code cleanup and documentation
 
 ### 6+ Hour Flight
+
 - **60 min:** Comprehensive review
 - **120 min:** Build substantial project
 - **90 min:** Add complex features
